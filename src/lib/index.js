@@ -1,5 +1,5 @@
-export async function getScramble() {
-    const res = await fetch('/api', {
+export async function getScramble(scrambleSize) {
+    const res = await fetch('/api?length=' + scrambleSize, {
         method: 'GET'
     })
 

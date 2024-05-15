@@ -3,14 +3,17 @@
     import {getScramble} from "$lib";
     import {fade} from "svelte/transition";
     import {saveTime, getMeanTime, getAverage} from "$lib/save.js";
+    import {getSettings} from "$lib/settings.js";
     import {onMount} from "svelte";
+
+    let settings;
 
     let meanTime;
     let ao5;
     let ao12;
     let ao100;
 
-    let scramble = getScramble();
+    let scramble;
     let timer;
     let timerText;
 
@@ -32,7 +35,7 @@
 
             getStats()
 
-            scramble = getScramble()
+            scramble = getScramble(settings.scrambleSize)
         }
     }
 
@@ -55,17 +58,27 @@
     }
 
     onMount(() => {
+        settings = getSettings()
+
+        scramble = getScramble(settings.scrambleSize)
+
         getStats()
     })
 </script>
 
 <svelte:body on:keyup={toggleTimer} />
 
+<div class="absolute top-5 right-5 bg-white rounded-lg p-1.5">
+    <a href="/settings" class="hover:child:rotate-180">
+        <img src="../../icons/settings.svg" alt="settings" class="w-9 transition-all duration-500 ease-in-out">
+    </a>
+</div>
+
 <div class="flex justify-center items-center mt-56 w-full relative">
     {#await scramble}
     	<p></p>
     {:then s}
-        <p in:fade={{duration: 450}} class:opacity-0={interval} class="text-4xl font-medium whitespace-nowrap absolute bottom-0 left-1/2 -translate-x-1/2 transition-opacity duration-150">{s}</p>
+        <p in:fade={{duration: 450}} class:opacity-0={interval} class="text-4xl font-medium whitespace-nowrap absolute bottom-0 left-1/2 -translate-x-1/2 transition-opacity duration-150">{s ? s : ""}</p>
     {/await}
 </div>
 
