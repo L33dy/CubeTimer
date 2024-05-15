@@ -21,13 +21,32 @@ export function saveTime(time, scramble) {
 export function getMeanTime() {
     let cachedData = JSON.parse(getCached())
 
-    console.log(cachedData)
-
     if (cachedData) {
         let times = cachedData.data.map(item => parseFloat(item.time))
         let sum = times.reduce((total, time) => total + time, 0)
 
         return (sum / times.length).toFixed(2);
+    }
+}
+
+export function getAverage(num) {
+    let cachedData = JSON.parse(getCached())
+
+    if (cachedData) {
+        let times = cachedData.data.map(item => parseFloat(item.time))
+
+        if (times.length < num) return;
+
+        let last = times.slice(-num)
+
+        let fastest = last.indexOf(Math.min(...last))
+        let slowest = last.indexOf(Math.max(...last))
+
+        let remaining = last.filter((_, index) => index !== fastest && index !== slowest)
+
+        let sum = remaining.reduce((acc, time) => acc + time, 0)
+
+        return (sum / remaining.length).toFixed(2)
     }
 }
 

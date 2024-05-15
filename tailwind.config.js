@@ -2,7 +2,12 @@
 export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
-    extend: {}
+    extend: {
+      fontFamily: {
+        'poetsen': 'Poetsen One',
+        'roboto-mono': ['Roboto Mono', 'monospace']
+      }
+    }
   },
   plugins: []
 };
