@@ -1,7 +1,7 @@
 <script>
     import Status from "./components/Status.svelte";
-    import {getScramble} from "$lib";
     import {fade} from "svelte/transition";
+    import {generateScramble} from "$lib/scramble.js";
     import {saveTime, getMeanTime, getAverage} from "$lib/save.js";
     import {getSettings} from "$lib/settings.js";
     import {onMount} from "svelte";
@@ -35,7 +35,7 @@
 
             getStats()
 
-            scramble = getScramble(settings.scrambleSize)
+            scramble = generateScramble(settings.scrambleSize)
         }
     }
 
@@ -60,7 +60,7 @@
     onMount(() => {
         settings = getSettings()
 
-        scramble = getScramble(settings.scrambleSize)
+        scramble = generateScramble(settings.scrambleSize)
 
         getStats()
     })
@@ -74,12 +74,10 @@
     </a>
 </div>
 
-<div class="flex justify-center items-center mt-56 w-full relative">
-    {#await scramble}
-    	<p></p>
-    {:then s}
-        <p in:fade={{duration: 450}} class:opacity-0={interval} class="text-4xl font-medium whitespace-nowrap absolute bottom-0 left-1/2 -translate-x-1/2 transition-opacity duration-150">{s ? s : ""}</p>
-    {/await}
+<div class="flex justify-center items-center mt-40 w-full relative">
+    {#key scramble}
+        <p in:fade={{duration: 450}} class:opacity-0={interval} class="text-4xl font-medium whitespace-nowrap absolute bottom-0 left-1/2 -translate-x-1/2 transition-opacity duration-150">{scramble ? scramble : ""}</p>
+    {/key}
 </div>
 
 <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">

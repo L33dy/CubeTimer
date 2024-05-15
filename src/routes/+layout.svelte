@@ -3,6 +3,8 @@
     import Footer from "./components/Footer.svelte";
 </script>
 
-<slot/>
+<main class="w-1/3 mx-auto py-24">
+    <slot/>
 
-<Footer/>
+    <Footer/>
+</main>

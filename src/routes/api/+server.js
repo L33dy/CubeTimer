@@ -1,4 +1,4 @@
-import {generateScramble} from "$lib/apiFunc.js";
+import {generateScramble} from "$lib/scramble.js";
 
 export function GET({url}) {
     let scrambleLength = url.searchParams.get("length");
