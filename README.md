@@ -13,14 +13,14 @@
 
 ### Get a scramble
 ```js
-fetch("https://scramble-api.netlify.app/api")
+fetch("https://cubetimerapp.netlify.app/api")
     .then((res) => res.text())
     .then((data) => console.log(data))
 ```
 
 ### Change the number of moves
 ```js
-fetch("https://scramble-api.netlify.app/api?length=20")
+fetch("https://cubetimerapp.netlify.app/api?length=20")
     .then((res) => res.text())
     .then((data) => console.log(data))
 ```
