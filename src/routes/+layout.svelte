@@ -1,10 +1,9 @@
 <script>
     import '../main.css'
-    import Footer from "./components/Footer.svelte";
+    import Navbar from "./components/Navbar.svelte";
 </script>
 
-<main class="w-1/3 mx-auto py-24">
+<main class="w-full mx-auto pt-16 pb-24">
+    <Navbar/>
     <slot/>
-
-    <Footer/>
 </main>

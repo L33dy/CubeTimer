@@ -68,12 +68,6 @@
 
 <svelte:body on:keyup={toggleTimer} />
 
-<div class="absolute top-5 right-5 bg-white rounded-lg p-1.5">
-    <a href="/settings" class="hover:child:rotate-180">
-        <img src="../../icons/settings.svg" alt="settings" class="w-9 transition-all duration-500 ease-in-out">
-    </a>
-</div>
-
 <div class="flex justify-center items-center mt-40 w-full relative">
     {#key scramble}
         <p in:fade={{duration: 450}} class:opacity-0={interval} class="text-4xl font-medium whitespace-nowrap absolute bottom-0 left-1/2 -translate-x-1/2 transition-opacity duration-150">{scramble ? scramble : ""}</p>
@@ -89,4 +83,10 @@
    <Status name="AO12" value={ao12} />
    <Status name="AO100" value={ao100} />
    <Status name="MEAN" value={meanTime} />
+</div>
+
+<div class="absolute bottom-10 left-10 bg-white rounded-lg p-2">
+    <a href="/settings" class="hover:child:rotate-180">
+        <img src="../../icons/settings.svg" alt="settings" class="w-8 transition-all duration-500 ease-in-out">
+    </a>
 </div>
