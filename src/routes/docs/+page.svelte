@@ -35,7 +35,8 @@
                 &emsp;.then((res) => res.text())
                 &emsp;.then((data) => console.log(data))
             </code>
-            <p class="border-l-4 border-l-violet-400 pl-4">Normally, the API returns a scramble for 3x3x3 cube consisting of 20 moves. You can change the type by passing a type parameter.</p>
+            <p class="border-l-4 border-l-violet-400 pl-4">Normally, the API returns a scramble for 3x3x3 cube consisting of 20 moves. You can change the type by passing a type parameter. <br><br>
+            Available types: <b>3x3, 2x2</b></p>
         </div>
     </div>
 </div>
