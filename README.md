@@ -18,13 +18,13 @@ fetch("https://cubetimerapp.netlify.app/api")
     .then((data) => console.log(data))
 ```
 
-### Change the number of moves
+### Change the cube type
 ```js
-fetch("https://cubetimerapp.netlify.app/api?length=20")
+fetch("https://cubetimerapp.netlify.app/api?type=2x2")
     .then((res) => res.text())
     .then((data) => console.log(data))
 ```
-Normally, the API generates a scramble of 10 moves. You can change this number by passing a length parameter.
+Normally, the API returns a scramble for 3x3x3 cube consisting of 20 moves. You can change the type by passing a type parameter.
 
 ## Upcoming features
 

@@ -1,5 +1,7 @@
+import {data} from "$lib/store.js";
+
 export function saveTime(time, scramble) {
-    let cachedData = JSON.parse(getCached())
+    let cachedData = getCached()
 
     if (cachedData) {
         cachedData['data'].push({scramble: scramble, time: time})
@@ -14,12 +16,13 @@ export function saveTime(time, scramble) {
             ]
         }
     }
+    data.update(d => d = cachedData)
 
     localStorage.setItem('cachedScrambles', JSON.stringify(cachedData))
 }
 
 export function getMeanTime() {
-    let cachedData = JSON.parse(getCached())
+    let cachedData = getCached()
 
     if (cachedData) {
         let times = cachedData.data.map(item => parseFloat(item.time))
@@ -30,7 +33,7 @@ export function getMeanTime() {
 }
 
 export function getAverage(num) {
-    let cachedData = JSON.parse(getCached())
+    let cachedData = getCached()
 
     if (cachedData) {
         let times = cachedData.data.map(item => parseFloat(item.time))
@@ -51,5 +54,13 @@ export function getAverage(num) {
 }
 
 function getCached() {
-    return localStorage.getItem('cachedScrambles')
+    let cached = JSON.parse(localStorage.getItem('cachedScrambles'))
+
+    data.subscribe(d => {
+        if (!d) {
+            data.set(cached)
+        }
+    })
+
+    return cached;
 }

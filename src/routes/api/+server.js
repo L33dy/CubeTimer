@@ -1,12 +1,17 @@
 import {generateScramble} from "$lib/scramble.js";
 
 export function GET({url}) {
-    let scrambleLength = url.searchParams.get("length");
+    let cubeType = url.searchParams.get("type");
 
-    if (scrambleLength > 30 && scrambleLength) scrambleLength = 30;
-    else if (scrambleLength < 5 && scrambleLength) scrambleLength = 5;
+    let scramble = generateScramble(cubeType? cubeType : "3x3");
 
-    return new Response(generateScramble(scrambleLength ? scrambleLength : 10), {
+    if (!scramble) {
+        return new Response("Invalid or non-existent cube type!", {
+            status: 400
+        })
+    }
+
+    return new Response(scramble, {
         status: 200,
         headers: {
             'content-type': 'text/plain'

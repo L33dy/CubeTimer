@@ -29,15 +29,13 @@
             </code>
         </div>
         <div class="flex flex-col justify-center items-start gap-4 w-full">
-            <h2 class="font-medium text-lg">Change the number of moves</h2>
+            <h2 class="font-medium text-lg">Change the cube type</h2>
             <code class="bg-gray-300 rounded-lg w-full px-12 py-6 whitespace-pre-line leading-8">
-                fetch("{$page.url.origin}/api?length=20")
+                fetch("{$page.url.origin}/api?type=2x2")
                 &emsp;.then((res) => res.text())
                 &emsp;.then((data) => console.log(data))
             </code>
-            <p class="border-l-4 border-l-violet-400 pl-4">Normally, the API generates a scramble consisting of 10
-                moves. You can
-                change this number by passing a length parameter.</p>
+            <p class="border-l-4 border-l-violet-400 pl-4">Normally, the API returns a scramble for 3x3x3 cube consisting of 20 moves. You can change the type by passing a type parameter.</p>
         </div>
     </div>
 </div>

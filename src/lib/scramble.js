@@ -1,7 +1,20 @@
 const moves = ["U", "D", "L", "R", "B", "F"]
 const dir = ["", "'", "2"]
 
-export function generateScramble(scrambleLength) {
+export function generateScramble(cubeType) {
+    let scrambleLength;
+
+    switch (cubeType) {
+        case "3x3":
+            scrambleLength = 20;
+            break;
+        case "2x2":
+            scrambleLength = 9;
+            break;
+    }
+
+    if (!scrambleLength) return;
+
     let scramble = valid(Array.from({length: scrambleLength}, () => [random(moves), random(dir)]))
 
     return scramble.map(move => move.join('')).join(' ');

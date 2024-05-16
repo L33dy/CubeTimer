@@ -3,10 +3,9 @@
     import {fade} from "svelte/transition";
     import {generateScramble} from "$lib/scramble.js";
     import {saveTime, getMeanTime, getAverage} from "$lib/save.js";
-    import {getSettings} from "$lib/settings.js";
+    import {cubeType} from "$lib/store.js";
     import {onMount} from "svelte";
-
-    let settings;
+    import SessionStats from "./components/SessionStats.svelte";
 
     let meanTime;
     let ao5;
@@ -35,7 +34,7 @@
 
             getStats()
 
-            scramble = generateScramble(settings.scrambleSize)
+            cubeType.subscribe(type => scramble = generateScramble(type))
         }
     }
 
@@ -58,19 +57,21 @@
     }
 
     onMount(() => {
-        settings = getSettings()
-
-        scramble = generateScramble(settings.scrambleSize)
-
         getStats()
+    })
+
+    $: cubeType.subscribe(type => {
+        scramble = generateScramble(type)
     })
 </script>
 
 <svelte:body on:keyup={toggleTimer} />
 
-<div class="flex justify-center items-center mt-40 w-full relative">
+<SessionStats />
+
+<div class="flex flex-col justify-center items-center mt-32 w-full relative">
     {#key scramble}
-        <p in:fade={{duration: 450}} class:opacity-0={interval} class="text-4xl font-medium whitespace-nowrap absolute bottom-0 left-1/2 -translate-x-1/2 transition-opacity duration-150">{scramble ? scramble : ""}</p>
+        <p in:fade={{duration: 450}} class:opacity-0={interval} class="text-4xl font-medium whitespace-nowrap transition-opacity duration-150">{scramble ? scramble : ""}</p>
     {/key}
 </div>
 

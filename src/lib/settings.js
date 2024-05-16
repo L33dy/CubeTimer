@@ -6,7 +6,7 @@ export function getSettings() {
     }
     else {
         let defaultSettings = {
-            "scrambleSize": 10
+            "language": "en"
         }
 
         localStorage.setItem("settings", JSON.stringify(defaultSettings))
