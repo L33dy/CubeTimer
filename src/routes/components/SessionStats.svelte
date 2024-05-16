@@ -22,11 +22,11 @@
             <option value="2x2">2x2</option>
         </select>
     </div>
-    <div class="grid grid-cols-3 gap-2">
-        {#if $data}
+    {#if $data}
+        <div class="grid grid-cols-3 gap-2">
             {#each $data.data as d}
                 <Time time={d.time} />
             {/each}
-        {/if}
-    </div>
+        </div>
+    {/if}
 </div>
