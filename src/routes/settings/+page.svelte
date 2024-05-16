@@ -29,7 +29,7 @@
         <h2 class="text-xl font-medium">General</h2>
         <div class="flex justify-between items-center mt-6 w-full">
             <div class="relative w-full flex justify-start items-center gap-3 text-lg">
-                <label for="scramble-size">Number of moves:</label>
+                <label for="scramble-size">Scramble size:</label>
                 <p class="text-violet-600 text-center font-medium" id="scramble-size">{settings?.scrambleSize ? settings?.scrambleSize : ""}</p>
             </div>
             <input bind:this={scrambleSlider} on:input={changeScrambleSize} id="scramble-slider"
