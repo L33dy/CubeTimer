@@ -1,17 +1,27 @@
 <script>
-    import {slide} from "svelte/transition";
-
     export let time;
 
-    let edit = false;
+    let timeObject;
+    let selected = false;
+
+    function toggleSelect() {
+        selected = !selected;
+
+        if (selected) {
+            timeObject.setAttribute('data-selected', '')
+        }
+        else {
+            timeObject.removeAttribute('data-selected')
+        }
+    }
 </script>
 
-<button on:click={() => edit = !edit} class="rounded-md px-5 py-1.5 bg-white shadow-sm hover:scale-105 cursor-default transition-all duration-300 ease-in-out flex flex-col justify-center items-center h-fit">
+<button bind:this={timeObject} on:click={toggleSelect} class="transition-colors duration-500 ease-in-out rounded-md px-7 py-3 bg-white shadow-sm flex flex-col justify-center items-center h-fit">
     <span class="font-semibold text-lg">{time}</span>
-    {#if edit}
-        <div transition:slide={{duration: 300}} class="flex justify-center items-center gap-1.5 child-hover:underline">
-            <button>+2</button>
-            <button>DNF</button>
-        </div>
-    {/if}
 </button>
+
+<style lang="postcss">
+    :global([data-selected]) {
+        @apply bg-gray-200;
+    }
+</style>

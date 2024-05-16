@@ -69,9 +69,9 @@
 
 <SessionStats />
 
-<div class="flex flex-col justify-center items-center mt-32 w-full relative">
+<div class="flex flex-col justify-center items-center mt-32 mx-auto w-1/2 relative">
     {#key scramble}
-        <p in:fade={{duration: 450}} class:opacity-0={interval} class="text-4xl font-medium whitespace-nowrap transition-opacity duration-150">{scramble ? scramble : ""}</p>
+        <p in:fade={{duration: 450}} class:opacity-0={interval} class="text-4xl font-medium transition-opacity duration-150 text-center">{scramble ? scramble : ""}</p>
     {/key}
 </div>
 
@@ -86,8 +86,9 @@
    <Status name="MEAN" value={meanTime} />
 </div>
 
+<!--
 <div class="absolute bottom-10 left-10 bg-white rounded-lg p-2">
     <a href="/settings" class="hover:child:rotate-180">
         <img src="../../icons/settings.svg" alt="settings" class="w-8 transition-all duration-500 ease-in-out">
     </a>
-</div>
+</div>-->

@@ -43,6 +43,6 @@
 
 <style lang="postcss">
     h1 {
-        @apply text-2xl bg-gradient-to-r from-violet-400 to-violet-600 text-transparent bg-clip-text;
+        @apply text-2xl text-violet-500 font-medium;
     }
 </style>
