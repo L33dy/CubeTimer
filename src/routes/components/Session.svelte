@@ -96,7 +96,7 @@
         {/if}
     </div>
     {#if $data && $data?.data.length > 0}
-        <div bind:this={timesGrid} class="grid grid-cols-3 gap-2">
+        <div bind:this={timesGrid} class="grid grid-cols-3 max-h-[172px] overflow-y-auto gap-2">
             {#each $data.data as d}
                 <Time time={d.time} penalty={d.penalty}/>
             {/each}

@@ -24,21 +24,29 @@ export function saveTime(time, scramble) {
 }
 
 export function getMeanTime() {
-    let cachedData = getCached()
+    let times;
+    let sum;
 
-    if (cachedData) {
-        let times = cachedData.data.map(item => parseFloat(item.time))
-        let sum = times.reduce((total, time) => total + time, 0)
+    data.subscribe(d => {
+        if(!d) return;
 
-        return (sum / times.length).toFixed(2);
-    }
+        times = d.data.map(item => parseFloat(item.time))
+        sum = times.reduce((total, time) => total + time, 0)
+    })
+
+    if (!times || !sum) return;
+
+    return (sum / times.length).toFixed(2)
 }
 
 export function getAverage(num) {
-    let cachedData = getCached()
+    let remaining;
+    let sum;
 
-    if (cachedData) {
-        let times = cachedData.data.map(item => parseFloat(item.time))
+    data.subscribe(d => {
+        if(!d) return;
+
+        let times = d.data.map(item => parseFloat(item.time))
 
         if (times.length < num) return;
 
@@ -47,12 +55,14 @@ export function getAverage(num) {
         let fastest = last.indexOf(Math.min(...last))
         let slowest = last.indexOf(Math.max(...last))
 
-        let remaining = last.filter((_, index) => index !== fastest && index !== slowest)
+        remaining = last.filter((_, index) => index !== fastest && index !== slowest)
 
-        let sum = remaining.reduce((acc, time) => acc + time, 0)
+        sum = remaining.reduce((acc, time) => acc + time, 0)
+    })
 
-        return (sum / remaining.length).toFixed(2)
-    }
+    if (!remaining || !sum) return;
+
+    return (sum / remaining.length).toFixed(2)
 }
 
 export function deleteFromDatabase(times) {
@@ -84,13 +94,5 @@ function setCached(cachedData) {
 }
 
 function getCached() {
-    let cached = JSON.parse(localStorage.getItem(databaseName))
-
-    data.subscribe(d => {
-        if (!d) {
-            data.set(cached)
-        }
-    })
-
-    return cached;
+    return JSON.parse(localStorage.getItem(databaseName));
 }
