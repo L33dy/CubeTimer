@@ -1,24 +1,26 @@
 import {data} from "$lib/store.js";
 
+const databaseName = 'sessions'
+
 export function saveTime(time, scramble) {
     let cachedData = getCached()
 
     if (cachedData) {
-        cachedData['data'].push({scramble: scramble, time: time})
+        cachedData['data'].push({scramble: scramble, time: time, penalty: 0})
     }
     else {
         cachedData = {
             data: [
                 {
                     scramble: scramble,
-                    time: time
+                    time: time,
+                    penalty: 0
                 }
             ]
         }
     }
-    data.update(d => d = cachedData)
 
-    localStorage.setItem('cachedScrambles', JSON.stringify(cachedData))
+    setCached(cachedData)
 }
 
 export function getMeanTime() {
@@ -53,8 +55,22 @@ export function getAverage(num) {
     }
 }
 
+export function deleteFromDatabase(times) {
+    let cachedData = getCached()
+
+    cachedData.data = cachedData.data.filter(record => !times.includes(record.time))
+
+    setCached(cachedData)
+}
+
+function setCached(cachedData) {
+    data.update(d => d = cachedData)
+
+    localStorage.setItem(databaseName, JSON.stringify(cachedData))
+}
+
 function getCached() {
-    let cached = JSON.parse(localStorage.getItem('cachedScrambles'))
+    let cached = JSON.parse(localStorage.getItem(databaseName))
 
     data.subscribe(d => {
         if (!d) {
