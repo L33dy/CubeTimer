@@ -71,7 +71,7 @@
 
 <div class="flex flex-col justify-center items-center mt-32 mx-auto w-1/2 relative">
     {#key scramble}
-        <p in:fade={{duration: 450}} class:opacity-0={interval} class="text-4xl font-medium transition-opacity duration-150 text-center">{scramble ? scramble : ""}</p>
+        <p in:fade={{duration: 450}} class:opacity-0={interval} class="text-4xl font-medium transition-opacity duration-150 text-center cursor-default">{scramble ? scramble : ""}</p>
     {/key}
 </div>
 
