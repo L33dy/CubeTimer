@@ -61,6 +61,20 @@ export function deleteFromDatabase(times) {
     cachedData.data = cachedData.data.filter(record => !times.includes(record.time))
 
     setCached(cachedData)
+
+    if (cachedData.data.length <= 0) {
+        localStorage.removeItem(databaseName)
+    }
+}
+
+export function editPenaltyOnDatabase(times, penalty) {
+    let cachedData = getCached()
+
+    times.forEach(time => {
+        cachedData.data.find(item => item.time === time).penalty = penalty;
+    })
+
+    setCached(cachedData)
 }
 
 function setCached(cachedData) {
