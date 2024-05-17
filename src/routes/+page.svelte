@@ -13,18 +13,25 @@
     let startTime;
     let interval;
 
-    async function toggleTimer(e) {
-        if(e.code !== "Space" || e.keyCode !== 32) return;
+    function keyDown(e) {
+        if (e.key === "Enter") {
+            cubeType.subscribe(type => {
+                scramble = generateScramble(type)
+            })
+        }
+    }
+
+    function toggleTimer(e) {
+        if (e.code !== "Space" || e.keyCode !== 32) return;
 
         if (!interval) {
             startTime = new Date().getTime();
             interval = setInterval(updateTime, 10)
-        }
-        else {
+        } else {
             clearInterval(interval)
             interval = null;
 
-            saveTime(timerText, await scramble)
+            saveTime(timerText, scramble)
 
             cubeType.subscribe(type => scramble = generateScramble(type))
         }
@@ -46,21 +53,23 @@
     })
 </script>
 
-<svelte:body on:keyup={toggleTimer} />
+<svelte:body on:keydown={keyDown} on:keyup={toggleTimer}/>
 
-<Session />
+<Session/>
 
 <div class="flex flex-col justify-center items-center mt-32 mx-auto w-1/2 relative">
     {#key scramble}
-        <p in:fade={{duration: 450}} class:opacity-0={interval} class="text-4xl font-medium transition-opacity duration-150 text-center cursor-default">{scramble ? scramble : ""}</p>
+        <p in:fade={{duration: 450}} class:opacity-0={interval}
+           class="text-4xl font-medium transition-opacity duration-150 text-center cursor-default">{scramble ? scramble : ""}</p>
     {/key}
 </div>
 
 <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-    <p bind:this={timer} class:scale-150={interval} class="text-6xl font-bold transition-all duration-300 ease-in-out">0.000</p>
+    <p bind:this={timer} class="text-6xl font-bold transition-all duration-300 ease-in-out" class:scale-150={interval}>
+        0.000</p>
 </div>
 
-<Stats />
+<Stats/>
 
 <!--
 <div class="absolute bottom-10 left-10 bg-white rounded-lg p-2">

@@ -35,14 +35,18 @@
         unselect()
     }
 
-    function editPenalty() {
+    function editPenalty(selectedPenalty) {
         let selectedTimes = times.filter(child => child.hasAttribute('data-selected')).map(child => child.getAttribute('data-time'))
-
-        let selectedPenalty = document.getElementById("penalty-sel").value
 
         editPenaltyOnDatabase(selectedTimes, parseInt(selectedPenalty))
 
         unselect()
+    }
+
+    function selectAll() {
+        times.forEach(child => {
+            child.setAttribute('data-selected', '')
+        })
     }
 
     function unselect() {
@@ -60,7 +64,7 @@
 
 <svelte:body on:click={checkForTimeSelection}/>
 
-<div class="absolute bottom-10 left-10 bg-gray-50 shadow-md flex flex-col justify-center items-start gap-7 px-3 py-2.5 rounded-md z-50">
+<div class="absolute bottom-10 left-10 bg-gray-50 shadow-md flex flex-col justify-center items-start gap-7 px-3 py-2.5 rounded-md z-50 w-[385px]">
     <div class="flex justify-start items-center gap-14 w-full relative">
         <h2 class="font-medium">Session 1</h2>
         <select bind:value={typeValue} class="text-violet-600 outline-none cursor-pointer bg-transparent"
@@ -70,24 +74,19 @@
         </select>
 
         {#if isSelected}
-            <button transition:fade={{duration: 200}} on:click={() => menuOpened = !menuOpened}
-                    class:bg-violet-200={!menuOpened} class:bg-violet-300={menuOpened}
-                    class="ml-auto w-6 transition-colors duration-500 ease-in-out rounded-md p-1">
-                <img src="../../../icons/dots-menu.svg" alt="dots menu" class="w-full h-full">
+            <button transition:fade={{duration: 200}} on:click={selectAll}
+                    class="ml-auto bg-violet-200 rounded-md text-violet-600 px-1.5">
+                Select All
             </button>
         {/if}
 
-        {#if menuOpened}
+        {#if isSelected}
             <div transition:fade={{duration: 200}}
-                 class="absolute -top-2.5 -right-5 translate-x-full bg-gray-50 shadow-md rounded-md px-2 py-2.5 flex flex-col justify-start items-start gap-6">
-                <div class="flex justify-start items-start gap-8">
-                    <label for="penalty-sel">Penalty:</label>
-                    <select on:change={editPenalty} id="penalty-sel" class="bg-transparent outline-none cursor-pointer">
-                        <option value="" selected hidden>Choose</option>
-                        <option value="0">No penalty</option>
-                        <option value="1">+2</option>
-                        <option value="2">DNF</option>
-                    </select>
+                 class="absolute -top-2.5 -right-5 translate-x-full bg-gray-50 shadow-md rounded-md px-3 py-2.5 flex flex-col justify-start items-start gap-6">
+                <div class="flex justify-center items-center gap-2 child:bg-gray-200 child-hover:bg-gray-300 child:transition-colors child:duration-300 child:rounded-md child:px-2">
+                    <button on:click={() => editPenalty(0)}>OK</button>
+                    <button on:click={() => editPenalty(1)}>+2</button>
+                    <button on:click={() => editPenalty(2)}>DNF</button>
                 </div>
                 <button on:click={deleteSelected} class="font-medium text-red-600 hover:text-red-800 self-center">
                     Delete
@@ -96,7 +95,7 @@
         {/if}
     </div>
     {#if $data && $data?.data.length > 0}
-        <div bind:this={timesGrid} class="grid grid-cols-3 max-h-[172px] overflow-y-auto gap-2">
+        <div bind:this={timesGrid} class="grid grid-cols-3 max-h-[172px] overflow-y-auto gap-2 w-full">
             {#each $data.data as d}
                 <Time time={d.time} penalty={d.penalty}/>
             {/each}
