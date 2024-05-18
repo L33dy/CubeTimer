@@ -64,7 +64,7 @@
 
 <svelte:body on:click={checkForTimeSelection}/>
 
-<div class="absolute bottom-10 left-10 bg-gray-50 shadow-md flex flex-col justify-center items-start gap-7 px-3 py-2.5 rounded-md z-50 w-[385px]">
+<div class="absolute bottom-10 left-10 bg-gray-50 shadow-md flex flex-col justify-center items-start gap-7 px-3 py-2.5 rounded-md z-50 w-[395px]">
     <div class="flex justify-start items-center gap-14 w-full relative">
         <h2 class="font-medium">Session 1</h2>
         <select bind:value={typeValue} class="text-violet-600 outline-none cursor-pointer bg-transparent"
@@ -75,7 +75,7 @@
 
         {#if isSelected}
             <button transition:fade={{duration: 200}} on:click={selectAll}
-                    class="ml-auto bg-violet-200 rounded-md text-violet-600 px-1.5">
+                    class="ml-auto bg-violet-200 hover:bg-violet-300 transition-colors duration-300 rounded-md text-violet-600 px-2 font-medium">
                 Select All
             </button>
         {/if}
@@ -83,13 +83,16 @@
         {#if isSelected}
             <div transition:fade={{duration: 200}}
                  class="absolute -top-2.5 -right-5 translate-x-full bg-gray-50 shadow-md rounded-md px-3 py-2.5 flex flex-col justify-start items-start gap-6">
-                <div class="flex justify-center items-center gap-2 child:bg-gray-200 child-hover:bg-gray-300 child:transition-colors child:duration-300 child:rounded-md child:px-2">
+                <div class="w-full flex justify-center items-center gap-3 child:bg-white child-hover:bg-gray-100 child:transition-colors child:duration-300 child:shadow-md child:px-3 child:rounded-md">
                     <button on:click={() => editPenalty(0)}>OK</button>
                     <button on:click={() => editPenalty(1)}>+2</button>
                     <button on:click={() => editPenalty(2)}>DNF</button>
                 </div>
-                <button on:click={deleteSelected} class="font-medium text-red-600 hover:text-red-800 self-center">
-                    Delete
+                <button on:click={deleteSelected} class="bg-red-100 hover:bg-red-200 transition-colors duration-300 self-center px-2 py-1 rounded-md flex justify-center items-center gap-4">
+                    <span>
+                        <img src="../../../icons/bin.svg" alt="bin" class="w-4">
+                    </span>
+                    <span class="!text-red-600">Delete</span>
                 </button>
             </div>
         {/if}
