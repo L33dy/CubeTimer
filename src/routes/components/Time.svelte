@@ -21,7 +21,7 @@
     }
 </script>
 
-<button data-time={time} bind:this={timeObject} class="transition-colors duration-500 ease-in-out rounded-md px-7 py-3 bg-white shadow-sm flex flex-col justify-center items-center h-[52px] outline-none"
+<button data-time={time} bind:this={timeObject} class="transition-colors duration-500 ease-in-out rounded-md px-7 py-3 bg-white shadow-sm flex flex-col justify-center items-center h-[58px] outline-none"
         on:click={toggleSelect}>
     <span class="font-semibold text-lg">{timeText}</span>
     <img alt="check" class="checkmark w-4 p-0.5 bg-white rounded-[50%]" src="../../../icons/check.svg">

@@ -1,12 +1,12 @@
 <script>
     import {fade} from "svelte/transition";
-    import {generateScramble} from "$lib/scramble.js";
+    import {scramble} from 'cube-scramble.js'
     import {saveTime} from "$lib/save.js";
     import {cubeType} from "$lib/store.js";
     import Session from "./components/Session.svelte";
     import Stats from "./components/Stats.svelte";
 
-    let scramble;
+    let sequence;
     let timer;
     let timerText;
 
@@ -15,9 +15,7 @@
 
     function keyDown(e) {
         if (e.key === "Enter") {
-            cubeType.subscribe(type => {
-                scramble = generateScramble(type)
-            })
+            generateNewSequence()
         }
     }
 
@@ -31,9 +29,9 @@
             clearInterval(interval)
             interval = null;
 
-            saveTime(timerText, scramble)
+            saveTime(timerText, sequence)
 
-            cubeType.subscribe(type => scramble = generateScramble(type))
+            generateNewSequence()
         }
     }
 
@@ -48,9 +46,13 @@
         timer.innerHTML = timerText;
     }
 
-    $: cubeType.subscribe(type => {
-        scramble = generateScramble(type)
-    })
+    function generateNewSequence() {
+        cubeType.subscribe(type => {
+            sequence = scramble(type).join(' ');
+        })
+    }
+
+    $: generateNewSequence()
 </script>
 
 <svelte:body on:keydown={keyDown} on:keyup={toggleTimer}/>
@@ -58,9 +60,9 @@
 <Session/>
 
 <div class="flex flex-col justify-center items-center mt-32 mx-auto w-1/2 relative">
-    {#key scramble}
+    {#key sequence}
         <p in:fade={{duration: 450}} class:opacity-0={interval}
-           class="text-4xl font-medium transition-opacity duration-150 text-center cursor-default">{scramble ? scramble : ""}</p>
+           class="text-4xl font-medium transition-opacity duration-150 text-center cursor-default">{sequence ? sequence : ""}</p>
     {/key}
 </div>
 

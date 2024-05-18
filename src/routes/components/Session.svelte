@@ -64,13 +64,21 @@
 
 <svelte:body on:click={checkForTimeSelection}/>
 
-<div class="absolute bottom-10 left-10 bg-gray-50 shadow-md flex flex-col justify-center items-start gap-7 px-3 py-2.5 rounded-md z-50 w-[395px]">
+<div class="absolute bottom-10 left-10 bg-gray-50 shadow-md flex flex-col justify-center items-start gap-7 px-3 py-2.5 rounded-md z-50 w-[480px]">
     <div class="flex justify-start items-center gap-14 w-full relative">
         <h2 class="font-medium">Session 1</h2>
-        <select bind:value={typeValue} class="text-violet-600 outline-none cursor-pointer bg-transparent"
+        <select bind:value={typeValue} class="text-violet-600 outline-none cursor-pointer bg-transparent text-end"
                 on:change={updateCubeType}>
             <option value="3x3">3x3</option>
             <option value="2x2">2x2</option>
+            <option value="4x4">4x4</option>
+            <option value="5x5">5x5</option>
+            <option value="6x6">6x6</option>
+            <option value="7x7">7x7</option>
+            <option value="pyraminx">Pyraminx</option>
+            <option value="megaminx">Megaminx</option>
+            <option value="skewb">Skewb</option>
+            <option value="clock">Magic Clock</option>
         </select>
 
         {#if isSelected}
@@ -88,7 +96,7 @@
                     <button on:click={() => editPenalty(1)}>+2</button>
                     <button on:click={() => editPenalty(2)}>DNF</button>
                 </div>
-                <button on:click={deleteSelected} class="bg-red-100 hover:bg-red-200 transition-colors duration-300 self-center px-2 py-1 rounded-md flex justify-center items-center gap-4">
+                <button on:click={deleteSelected} class="bg-red-100 hover:bg-red-200 transition-colors duration-300 self-center px-2 py-0.5 rounded-md flex justify-center items-center gap-4">
                     <span>
                         <img src="../../../icons/bin.svg" alt="bin" class="w-4">
                     </span>

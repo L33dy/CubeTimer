@@ -30,7 +30,9 @@ export function getMeanTime() {
     data.subscribe(d => {
         if(!d) return;
 
-        times = d.data.map(item => {
+        times = d.data
+            .filter(item => item.penalty !== 2)
+            .map(item => {
             let time = parseFloat(item.time);
 
             if (item.penalty === 1) {
@@ -54,7 +56,8 @@ export function getAverage(num) {
     data.subscribe(d => {
         if(!d) return;
 
-        let times = d.data.map(item => {
+        let times = d.data
+            .map(item => {
             let time = parseFloat(item.time);
 
             if (item.penalty === 1) {
