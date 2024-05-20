@@ -3,7 +3,7 @@
 </script>
 
 <div class="bg-white h-[100vh] w-[350px] fixed top-0 left-0 px-6 py-5">
-    <h1 class="text-3xl font-medium bg-gradient-to-r from-violet-300 to-violet-500 text-transparent bg-clip-text">CubeTimer.</h1>
+    <h1 class="text-3xl font-medium bg-gradient-to-r from-violet-500 to-violet-200 text-transparent bg-clip-text">CubeTimer.</h1>
     <nav class="w-full flex flex-col justify-start items-start gap-5 mt-10 ml-3">
         <a href="/" class:active={$page.url.pathname === "/"}>
             <img src="../../../icons/stopwatch.svg" alt="stopwatch" class="w-7">
