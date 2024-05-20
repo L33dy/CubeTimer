@@ -22,7 +22,7 @@
     })
 </script>
 
-<div class="w-[250px] h-[150px] absolute bottom-10 right-10 flex justify-between items-center flex-wrap bg-white py-1 px-3 rounded-lg">
+<div class="w-[250px] h-[150px] absolute bottom-10 right-10 flex justify-between items-center flex-wrap bg-white py-1 px-3 rounded-lg shadow-md">
     <div class="flex flex-col justify-center items-center basis-1/2">
         <h2 class="uppercase text-gray-600 font-medium text-md">AO5</h2>
         <p class="font-semibold text-xl">{ao5 ? ao5 : "-"}</p>

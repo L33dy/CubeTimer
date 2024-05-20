@@ -1,17 +1,16 @@
 <script>
     import '../main.css'
-    import Navbar from "./components/Navbar.svelte";
     import {data} from "$lib/store.js";
     import {onMount} from "svelte";
+    import SideMenu from "./components/SideMenu.svelte";
 
     onMount(() => {
-        // load current data
-
-        data.set(JSON.parse(localStorage.getItem('sessions')))
+        data.set(JSON.parse(localStorage.getItem('solves')))
     })
 </script>
 
-<main class="w-full mx-auto pt-16 pb-24">
-    <Navbar/>
+<SideMenu />
+
+<main class="ml-[350px] h-[100vh] pt-16 pb-24 relative">
     <slot/>
 </main>

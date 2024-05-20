@@ -1,6 +1,6 @@
 import {data} from "$lib/store.js";
 
-const databaseName = 'sessions'
+const databaseName = 'solves'
 
 export function saveTime(time, scramble) {
     let cachedData = getCached()

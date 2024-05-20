@@ -58,8 +58,9 @@
 <svelte:body on:keydown={keyDown} on:keyup={toggleTimer}/>
 
 <Session/>
+<Stats/>
 
-<div class="flex flex-col justify-center items-center mt-32 mx-auto w-1/2 relative">
+<div class="flex flex-col justify-center items-center mt-32 mx-auto w-3/4 relative">
     {#key sequence}
         <p in:fade={{duration: 450}} class:opacity-0={interval}
            class="text-4xl font-medium transition-opacity duration-150 text-center cursor-default">{sequence ? sequence : ""}</p>
@@ -70,12 +71,3 @@
     <p bind:this={timer} class="text-6xl font-bold transition-all duration-300 ease-in-out" class:scale-150={interval}>
         0.000</p>
 </div>
-
-<Stats/>
-
-<!--
-<div class="absolute bottom-10 left-10 bg-white rounded-lg p-2">
-    <a href="/settings" class="hover:child:rotate-180">
-        <img src="../../icons/settings.svg" alt="settings" class="w-8 transition-all duration-500 ease-in-out">
-    </a>
-</div>-->
