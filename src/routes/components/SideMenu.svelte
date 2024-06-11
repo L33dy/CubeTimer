@@ -14,6 +14,10 @@
             <img src="../../../icons/hourglass.svg" alt="menu" class="w-7">
             <span>Solves</span>
         </a>
+        <a href="/docs" class:active={$page.url.pathname === "/docs"}>
+            <img src="../../../icons/docs.svg" alt="docs" class="w-6 ml-1">
+            <span>Documentation</span>
+        </a>
         <a href="/settings" class:active={$page.url.pathname === "/settings"}>
             <img src="../../../icons/wrench.svg" alt="wrench" class="w-7">
             <span>Settings</span>

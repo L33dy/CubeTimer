@@ -12,7 +12,7 @@
         </div>
         <div class="w-full flex flex-col justify-center items-start gap-4">
             <h1>How to use the API.</h1>
-            <p>CubeTimer provides a simple API that generates and returns a scramble based on the given parameters.
+            <p>CubeTimer provides a simple REST API that generates and returns a scramble based on the given parameters.
                 Below is
                 documentation on
                 examples to check out on how to use the API.</p>

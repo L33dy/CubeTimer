@@ -16,7 +16,7 @@ export function GET({url}) {
 
     if(!sequence) {
         return new Response('Invalid or non existent puzzle type!', {
-            status: 400
+            status: 400,
         })
     }
 
