@@ -1,16 +1,18 @@
-<script>
+<script lang="ts">
     import '../main.css'
-    import {data} from "$lib/store.js";
+    import {scrambleData} from "$lib/store";
     import {onMount} from "svelte";
-    import SideMenu from "./components/SideMenu.svelte";
+    import Navbar from "$lib/components/NavBar.svelte";
+    import {getData} from "$lib/database";
 
     onMount(() => {
-        data.set(JSON.parse(localStorage.getItem('solves')))
+        $scrambleData = getData()
     })
 </script>
 
-<SideMenu />
-
-<main class="ml-[350px] h-[100vh] pt-16 pb-24 relative">
-    <slot/>
+<main class="grid grid-cols-main w-full h-full">
+    <Navbar />
+    <div class="py-24 px-10 h-full relative">
+       <slot />
+    </div>
 </main>

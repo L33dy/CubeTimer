@@ -1,26 +1,26 @@
-<script>
+<script lang="ts">
     import {fade} from "svelte/transition";
     import {scramble} from 'cube-scramble.js'
-    import {saveTime} from "$lib/save.js";
+    import {saveData} from "$lib/database";
     import {cubeType} from "$lib/store.js";
-    import Session from "./components/Session.svelte";
-    import Stats from "./components/Stats.svelte";
+    import Session from "$lib/components/Session.svelte";
+    import Stats from "$lib/components/Stats.svelte";
 
-    let sequence;
-    let timer;
-    let timerText;
+    let sequence: string;
+    let timer: HTMLElement;
+    let timerText: string;
 
-    let startTime;
-    let interval;
+    let startTime: number;
+    let interval: number | null;
 
-    function keyDown(e) {
-        if (e.key === "Enter") {
+    function keyDown(e: KeyboardEvent): void {
+        if (e.code === "Enter") {
             generateNewSequence()
         }
     }
 
-    function toggleTimer(e) {
-        if (e.code !== "Space" || e.keyCode !== 32) return;
+    function toggleTimer(e: KeyboardEvent): void {
+        if (e.code !== "Space") return
 
         if (!interval) {
             startTime = new Date().getTime();
@@ -29,13 +29,13 @@
             clearInterval(interval)
             interval = null;
 
-            saveTime(timerText, sequence)
+            saveData(parseFloat(timerText), sequence)
 
             generateNewSequence()
         }
     }
 
-    function updateTime() {
+    function updateTime(): void {
         let currentTime = new Date().getTime()
         let elapsedTime = currentTime - startTime;
         let seconds = Math.floor(elapsedTime / 1000) % 60
@@ -46,7 +46,7 @@
         timer.innerHTML = timerText;
     }
 
-    function generateNewSequence() {
+    function generateNewSequence(): void {
         cubeType.subscribe(type => {
             sequence = scramble(type).join(' ');
         })

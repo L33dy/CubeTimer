@@ -1,5 +1,7 @@
-<script>
-    export let solveData;
+<script lang="ts">
+    import type {Solve} from "$lib/types/solve.type";
+
+    export let solveData: Solve;
 
     let isSelected = false;
     let solve;

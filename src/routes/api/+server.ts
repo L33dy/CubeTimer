@@ -5,7 +5,7 @@ export function GET({url}) {
 
     if (!type) type = "3x3"
 
-    let sequence;
+    let sequence: string[] | undefined;
 
     try {
         sequence = scramble(type)

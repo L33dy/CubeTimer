@@ -2,7 +2,7 @@
     import {page} from "$app/stores";
 </script>
 
-<div class="w-1/3 mx-auto pt-14">
+<div class="w-3/4 mx-auto">
     <div class="flex flex-col justify-start items-start gap-12">
         <div class="w-full flex flex-col justify-center items-start gap-4">
             <h1>About.</h1>

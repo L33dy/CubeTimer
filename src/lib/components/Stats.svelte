@@ -1,25 +1,18 @@
-<script>
-    import {data} from "$lib/store.js";
-    import {getMeanTime, getAverage} from "$lib/save.js";
-    import {onMount} from "svelte";
+<script lang="ts">
+    import {scrambleData} from "$lib/store.js";
+    import {getMeanTime, getAverage} from "$lib/utils";
 
-    let mean;
-    let ao5;
-    let ao12;
-    let ao100;
+    let mean : number | undefined;
+    let ao5 : number | undefined;
+    let ao12: number | undefined;
+    let ao100: number | undefined;
 
-    onMount(() => {
-        const dataStore = data.subscribe(value => {
-            mean = getMeanTime()
-            ao5 = getAverage(5)
-            ao12 = getAverage(12)
-            ao100 = getAverage(100)
-        })
-
-        return () => {
-            dataStore()
-        }
-    })
+    $: $scrambleData, (() => {
+        mean = getMeanTime()
+        ao5 = getAverage(5)
+        ao12 = getAverage(12)
+        ao100 = getAverage(100)
+    })()
 </script>
 
 <div class="w-[250px] h-[150px] absolute bottom-10 right-10 flex justify-between items-center flex-wrap bg-white py-1 px-3 rounded-lg shadow-md">

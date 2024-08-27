@@ -8,6 +8,9 @@ export default {
   ],
   theme: {
     extend: {
+      gridTemplateColumns: {
+        'main': 'minmax(300px, 350px) auto'
+      }
     }
   },
   plugins: [

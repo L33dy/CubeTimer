@@ -1,13 +1,13 @@
-<script>
-    import {data} from "$lib/store.js";
-    import Solve from "./components/Solve.svelte";
+<script lang="ts">
+    import {scrambleData} from "$lib/store";
+    import Solve from "$lib/components/solves/Solve.svelte";
 
     let toggleEdit = false;
 
-    let timesContainer;
+    let timesContainer: HTMLElement;
     let areSelected = false;
 
-    function selectAll() {
+    function selectAll(): void {
         areSelected = !areSelected;
 
         let children = timesContainer.children;
@@ -39,9 +39,9 @@
             <button on:click={() => toggleEdit = true} class="rounded-sm font-medium text-violet-600 bg-violet-200 hover:bg-violet-300 px-3 py-0.5 transition-colors duration-300 ease-in-out">Select</button>
         {/if}
     </div>
-    {#if $data && $data?.data.length > 0}
+    {#if $scrambleData && $scrambleData?.data.length > 0}
         <div bind:this={timesContainer} class="grid grid-cols-3 gap-5 w-full">
-            {#each $data.data as d}
+            {#each $scrambleData.data as d}
                 {#if toggleEdit}
                     <Solve solveData={d} />
                     {:else}
