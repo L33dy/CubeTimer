@@ -4,7 +4,7 @@
     export let solveData: Solve;
 
     let isSelected = false;
-    let solve;
+    let solve: HTMLElement | null;
 
     function selectSolve() {
         isSelected = !isSelected;
@@ -23,7 +23,7 @@
 <button bind:this={solve} on:click={selectSolve} class="h-[60px] max-h-[60px] bg-white px-8 rounded-md shadow-md transition-all duration-300 ease-in-out flex flex-col justify-center items-center">
     <span class="text-lg font-medium">{solveData.time}</span>
     <span id="checkmark" class="bg-white rounded-full w-4 h-4 hidden justify-center items-center">
-        <img src="../../../../icons/check.svg" alt="check" class="w-3">
+        <span class="i-[bi--check] text-violet-500" />
     </span>
 </button>
 

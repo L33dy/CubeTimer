@@ -1,4 +1,5 @@
 import plugin from "tailwindcss/plugin";
+import { iconsPlugin, dynamicIconsPlugin } from "@egoist/tailwindcss-icons";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -17,6 +18,8 @@ export default {
     plugin(function({addVariant}) {
       addVariant('child', '& > *');
       addVariant('child-hover', '& > *:hover');
-    })
+    }),
+      iconsPlugin(),
+      dynamicIconsPlugin(),
   ],
 };

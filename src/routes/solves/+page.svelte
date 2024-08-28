@@ -29,8 +29,8 @@
     <div class="flex justify-end w-full">
         {#if toggleEdit}
             <div class="flex justify-end gap-2 w-full">
-                <button class="rounded-sm bg-violet-200 hover:bg-violet-300 transition-colors duration-300 ease-in-out px-1.5 mr-auto">
-                    <img src="../../../icons/dots-menu.svg" alt="dots menu" class="w-5">
+                <button class="rounded-sm bg-violet-200 hover:bg-violet-300 transition-colors duration-300 ease-in-out px-1.5 mr-auto flex justify-center items-center">
+                    <span class="i-[tabler--dots] text-violet-600" />
                 </button>
                 <button on:click={selectAll} class="rounded-sm font-medium text-violet-600 bg-violet-200 hover:bg-violet-300 px-3 py-0.5 transition-colors duration-300 ease-in-out">Select All</button>
                 <button on:click={() => toggleEdit = false} class="rounded-sm font-medium text-gray-800 bg-gray-200 hover:bg-gray-300 px-3 py-0.5 transition-colors duration-300 ease-in-out">Cancel</button>

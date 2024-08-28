@@ -12,7 +12,7 @@
 
 <main class="grid grid-cols-main w-full h-full">
     <Navbar />
-    <div class="py-24 px-10 h-full relative">
+    <div class="py-24 px-10 h-full relative overflow-auto">
        <slot />
     </div>
 </main>

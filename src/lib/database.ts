@@ -1,16 +1,16 @@
 import {scrambleData} from "$lib/store";
-import {Penalty, type Solve} from "$lib/types/solve.type";
+import {Penalty, type SolveData} from "$lib/types/solve.type";
 
-const databaseName = 'solves'
+const databaseName: string = 'solves'
 
 export function saveData(time: number, scramble: string): void {
-    let cachedData = getData()
+    let data = getData()
 
-    if (cachedData) {
-        cachedData['data'].push({scramble: scramble, time: time, penalty: Penalty.None})
+    if (data) {
+        data['data'].push({scramble: scramble, time: time, penalty: Penalty.None})
     }
     else {
-        cachedData = {
+        data = {
             data: [
                 {
                     scramble: scramble,
@@ -21,39 +21,17 @@ export function saveData(time: number, scramble: string): void {
         }
     }
 
-    setCached(cachedData)
+    setData(data)
 }
 
-export function getData(): Solve | null{
+export function getData(): SolveData | null{
     let data = localStorage.getItem(databaseName)
 
     return data ? JSON.parse(data) : undefined;
 }
 
-/*export function deleteFromDatabase(times) {
-    let cachedData = getData()
+function setData(data: SolveData): void {
+    scrambleData.set(data);
 
-    cachedData.data = cachedData.data.filter(record => !times.includes(record.time))
-
-    setCached(cachedData)
-
-    if (cachedData.data.length <= 0) {
-        localStorage.removeItem(databaseName)
-    }
-}*/
-
-/*export function editPenaltyOnDatabase(times, penalty) {
-    let cachedData = getData()
-
-    times.forEach(time => {
-        cachedData.data.find(item => item.time === time).penalty = penalty;
-    })
-
-    setCached(cachedData)
-}*/
-
-function setCached(cachedData: Solve): void {
-    scrambleData.set(cachedData);
-
-    localStorage.setItem(databaseName, JSON.stringify(cachedData))
+    localStorage.setItem(databaseName, JSON.stringify(data))
 }

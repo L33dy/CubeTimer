@@ -35,8 +35,19 @@
                 &emsp;.then((res) => res.text())
                 &emsp;.then((data) => console.log(data))
             </code>
-            <p class="border-l-4 border-l-violet-400 pl-4">Normally, the API returns a scramble for 3x3x3 cube. You can change the puzzle type by passing a type parameter. <br><br>
+            <p class="info">Normally, the API returns a scramble for 3x3x3 cube. You can change the puzzle type by passing a type parameter. <br><br>
             Available types: <b>3x3, 2x2, 4x4, 5x5, 6x6, 7x7, pyraminx, megaminx, skewb, clock</b></p>
+        </div>
+        <div class="flex flex-col justify-center items-start gap-4 w-full">
+            <h2 class="font-medium text-lg">Get a list of types</h2>
+            <code class="bg-gray-300 rounded-lg w-full px-12 py-6 whitespace-pre-line leading-8">
+                fetch("{$page.url.origin}/api/types")
+                &emsp;.then((res) => res.json())
+                &emsp;.then((data) => console.log(data))
+            </code>
+            <p class="info">
+                Returns a JSON with an array containing all available scramble types that can be used.
+            </p>
         </div>
     </div>
 </div>
@@ -44,5 +55,9 @@
 <style lang="postcss">
     h1 {
         @apply text-2xl text-violet-500 font-medium;
+    }
+
+    .info {
+        @apply border-l-4 border-l-violet-400 pl-4;
     }
 </style>
