@@ -8,7 +8,7 @@ export function getMeanTime(): number | undefined {
     scrambleData.subscribe(d => {
         if(!d) return;
 
-        times = d.data
+        times = d
             .filter(item => item.penalty !== Penalty.DNF)
             .map(item => {
                 let time = item.time;
@@ -34,7 +34,7 @@ export function getAverage(num: number): number | undefined {
     scrambleData.subscribe(d => {
         if(!d) return;
 
-        let times = d.data
+        let times = d
             .map(item => {
                 let time = item.time;
 

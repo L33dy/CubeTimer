@@ -4,18 +4,8 @@ export enum Penalty {
     DNF
 }
 
-export type SolveData = {
-    data: [
-        {
-            scramble: string,
-            time: number,
-            penalty: Penalty
-        }
-    ]
-}
-
-export type Solve = {
-    scramble: string,
-    time: number,
+export interface Solve {
+    scramble: string
+    time: number
     penalty: Penalty
 }
