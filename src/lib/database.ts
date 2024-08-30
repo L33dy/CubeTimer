@@ -6,7 +6,7 @@ const databaseName: string = 'solves'
 export function saveData(time: number, scramble: string, puzzleType: string): void {
     let data = getData() ?? []
 
-    data.push(<Solve>{date: Date.now(), scramble: scramble, time: time, puzzleType: puzzleType, penalty: Penalty.None})
+    data.push(<Solve>{date: Date.now(), scramble: scramble, time: time, puzzleType: puzzleType, note: "", penalty: Penalty.None})
 
     setData(data)
 }
@@ -42,9 +42,18 @@ export function editPenalty(solve: Solve[] | Solve, penalty: Penalty): void {
 export function addNote(solve: Solve, text: string): void {
     const data = getData() ?? []
 
-    data.find(i => i.date === solve.date)!.note = text;
+    const updated = data.map(item => {
+        if (item.date === solve.date) {
+            return {
+                ...item,
+                note: text
+            }
+        }
 
-    setData(data)
+        return item
+    })
+
+    setData(updated)
 }
 
 export function deleteSolves(solves: Solve[]): void {

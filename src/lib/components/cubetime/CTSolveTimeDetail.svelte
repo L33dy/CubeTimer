@@ -13,7 +13,7 @@
     $: commentInput = note
 
     function closeDetail() {
-        addNote(solveData, commentInput ?? "")
+        addNote(solveData, commentInput)
 
         dispatch('hide')
     }
