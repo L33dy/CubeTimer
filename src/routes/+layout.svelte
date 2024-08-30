@@ -6,7 +6,7 @@
     import {getData} from "$lib/database";
     import CTLoading from "$lib/components/cubetime/CTLoading.svelte";
     import CTSolveTimeDetail from "$lib/components/cubetime/CTSolveTimeDetail.svelte";
-    import {detailData, show, hideDetail} from "$lib/solveDetail";
+    import {detailData, visible, hideDetail} from "$lib/solveDetail";
 
     onMount(() => {
         $scrambleData = getData()
@@ -24,6 +24,6 @@
     </main>
 {/if}
 
-{#if $show && $detailData}
+{#if $visible && $detailData}
     <svelte:component this={CTSolveTimeDetail} solveData={$detailData} on:hide={hideDetail} />
 {/if}

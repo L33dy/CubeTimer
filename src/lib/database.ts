@@ -26,14 +26,17 @@ export function clearData(): void {
 export function editPenalty(solve: Solve[] | Solve, penalty: Penalty): void {
     const data = getData() ?? []
 
-    if (Array.isArray(solve)) {
-        solve.forEach(s => {
-            const found = data.find(i => s.scramble === s.scramble);
-            if (found) found.penalty = penalty
+    if(Array.isArray(solve)) {
+        data.forEach(item => {
+            const match = solve.find(s => s.date === item.date)
+
+            if (match) item.penalty = penalty
         })
     }
     else {
-        data.find(i => i.date === solve.date)!.penalty = penalty;
+        const match = data.find(item => item.date === solve.date)
+
+        if (match) match.penalty = penalty
     }
 
     setData(data)
@@ -59,9 +62,17 @@ export function addNote(solve: Solve, text: string): void {
 export function deleteSolves(solves: Solve[]): void {
     const data = getData() ?? []
 
-    const filteredData = data.filter(item => !solves.some(solve => solve.scramble === item.scramble))
+    const updatedData = data.filter(item => !solves.some(solve => solve.date === item.date))
 
-    setData(filteredData)
+    setData(updatedData)
+}
+
+export function deleteSolve(solve: Solve): void {
+    const data = getData() ?? []
+
+    const updatedData = data.filter(item => item.date !== solve.date)
+
+    setData(updatedData)
 }
 
 function setData(data: Solve[]): void {

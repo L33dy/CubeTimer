@@ -2,7 +2,8 @@ import {derived, writable} from "svelte/store";
 import type {Solve} from "$lib/types/solve.type";
 import {scrambleData} from "$lib/store";
 
-export const show = writable<boolean>(false)
+export const visible = writable<boolean>(false)
+
 const selectedDetail = writable<Solve | null>(null)
 export const detailData = derived([scrambleData, selectedDetail], ([$scrambleData, $selectedData]) => {
     if ($scrambleData && $scrambleData.length > 0) {
@@ -16,11 +17,11 @@ export const detailData = derived([scrambleData, selectedDetail], ([$scrambleDat
 export function showDetail(data: Solve) {
     selectedDetail.set(data)
 
-    show.set(true)
+    visible.set(true)
 }
 
 export function hideDetail() {
-    show.set(false)
+    visible.set(false)
 
     selectedDetail.set(null)
 }

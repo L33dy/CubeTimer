@@ -4,7 +4,7 @@
     export let solveData: Solve;
     export let editable: boolean = false;
 
-    const {time, penalty} = solveData;
+    $: ({time, penalty} = solveData)
 </script>
 
 <button on:click

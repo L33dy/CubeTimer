@@ -24,7 +24,7 @@
 
         if (!interval) {
             startTime = new Date().getTime();
-            interval = setInterval(updateTime, 10)
+            interval = setInterval(updateTime, 1)
         } else {
             clearInterval(interval)
             interval = null;
