@@ -9,14 +9,16 @@
     import CTPopperButton from "$lib/components/cubetime/CTPopperButton.svelte";
     import type {PopperOption} from "$lib/types/popper.type";
     import {deleteSolves} from "$lib/database.js";
+    import CTSolveTime from "$lib/components/cubetime/CTSolveTime.svelte";
+    import CTSolveTimeDetail from "$lib/components/cubetime/CTSolveTimeDetail.svelte";
+    import {showDetail} from "$lib/solveDetail";
 
     let solves = writable(new Set<Solve>())
 
-    let toggleEdit = true;
+    let toggleEdit: boolean = false;
     let showOptions: boolean;
 
-    let timesContainer: HTMLElement;
-    let areSelected = false;
+    let areSelected: boolean = false;
 
     const penaltyOptions: PopperOption[] = [
         {
@@ -49,22 +51,10 @@
     function selectAll(): void {
         areSelected = !areSelected;
 
-        const children = timesContainer.children;
-
-        for (let i = 0; i < children.length; i++) {
-            areSelected ? children[i].setAttribute('data-selected', '') : children[i].removeAttribute('data-selected');
-        }
-
         $solves = areSelected ? new Set($scrambleData) : new Set()
     }
 
     function cancel() {
-        const children = timesContainer.children;
-
-        for (let i = 0; i < children.length; i++) {
-            children[i].removeAttribute('data-selected')
-        }
-
         toggleEdit = false
         areSelected = false
     }
@@ -116,10 +106,10 @@
             </CTButton>
         {/if}
     </div>
-    {#if $scrambleData && $scrambleData.length > 0}
-        <div bind:this={timesContainer} class="grid grid-cols-3 gap-5 w-full">
+    {#if $scrambleData}
+        <div class="grid grid-cols-3 gap-5 w-full">
             {#each $scrambleData as solveData}
-                <SolveTime on:select={select} {solveData} editable={toggleEdit} />
+                <CTSolveTime on:click={() => showDetail(solveData)} {solveData} editable={true} />
             {/each}
         </div>
     {/if}

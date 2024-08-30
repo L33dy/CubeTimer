@@ -29,7 +29,7 @@
             clearInterval(interval)
             interval = null;
 
-            saveData(parseFloat(timerText), sequence)
+            saveData(parseFloat(timerText), sequence, $cubeType)
 
             generateNewSequence()
         }

@@ -3,10 +3,10 @@ import {Penalty, type Solve} from "$lib/types/solve.type";
 
 const databaseName: string = 'solves'
 
-export function saveData(time: number, scramble: string): void {
+export function saveData(time: number, scramble: string, puzzleType: string): void {
     let data = getData() ?? []
 
-    data.push({scramble: scramble, time: time, penalty: Penalty.None})
+    data.push(<Solve>{date: Date.now(), scramble: scramble, time: time, puzzleType: puzzleType, penalty: Penalty.None})
 
     setData(data)
 }
@@ -23,13 +23,26 @@ export function clearData(): void {
     scrambleData.set(getData())
 }
 
-export function editPenalty(solves: Solve[], penalty: Penalty): void {
+export function editPenalty(solve: Solve[] | Solve, penalty: Penalty): void {
     const data = getData() ?? []
 
-    solves.forEach(s => {
-        const found = data.find(i => s.scramble === s.scramble);
-        if (found) found.penalty = penalty
-    })
+    if (Array.isArray(solve)) {
+        solve.forEach(s => {
+            const found = data.find(i => s.scramble === s.scramble);
+            if (found) found.penalty = penalty
+        })
+    }
+    else {
+        data.find(i => i.date === solve.date)!.penalty = penalty;
+    }
+
+    setData(data)
+}
+
+export function addNote(solve: Solve, text: string): void {
+    const data = getData() ?? []
+
+    data.find(i => i.date === solve.date)!.note = text;
 
     setData(data)
 }

@@ -1,10 +1,17 @@
 <script lang="ts">
-    export let color: 'primary' | 'secondary' = 'secondary'
+    export let color: 'primary' | 'secondary' | 'white' = 'secondary'
+    export let size: 'small' | 'default' = 'default'
+    export let icon: string | undefined = undefined
+    export let disabled: boolean = false
 </script>
 
-<button class:primary={color === 'primary'} class:secondary={color === 'secondary'}
-        class="rounded-md font-medium transition-colors duration-300 ease-in-out px-1.5 py-0.5 flex justify-center items-center outline-none"
-        on:click>
+<button class:primary={color === 'primary'} class:secondary={color === 'secondary'} class:white={color === 'white'}
+        class:text-sm={size === 'small'}
+        class="rounded-md font-medium transition-colors duration-300 ease-in-out px-1.5 py-0.5 flex justify-center items-center gap-1 outline-none"
+        on:click disabled={disabled}>
+    {#if icon}
+        <span class={`${icon}`} />
+    {/if}
     <slot />
 </button>
 
@@ -15,5 +22,13 @@
 
     .secondary {
         @apply text-gray-800 bg-gray-200 hover:bg-gray-300;
+    }
+
+    .white {
+        @apply bg-white disabled:text-violet-700 shadow-sm border-1 border-gray-200;
+    }
+
+    .white:not(:disabled) {
+        @apply hover:bg-gray-100;
     }
 </style>

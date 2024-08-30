@@ -1,7 +1,7 @@
 <script lang="ts">
     import {cubeType, scrambleData} from "$lib/store";
     import {onMount} from "svelte";
-    import Time from "./Time.svelte";
+    import CTSolveTime from "$lib/components/cubetime/CTSolveTime.svelte";
 
     let typeValue: string;
 
@@ -33,8 +33,8 @@
     </div>
     {#if $scrambleData && $scrambleData.length > 0}
         <div class="grid grid-cols-3 max-h-[172px] overflow-y-auto gap-2 w-full">
-            {#each $scrambleData as scramble}
-                <Time time={scramble.time} penalty={scramble.penalty} />
+            {#each $scrambleData as scramble (scramble.date)}
+                <CTSolveTime solveData={scramble} />
             {/each}
         </div>
     {/if}

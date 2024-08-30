@@ -1,5 +1,6 @@
 import plugin from "tailwindcss/plugin";
 import { iconsPlugin, dynamicIconsPlugin } from "@egoist/tailwindcss-icons";
+import colors from "tailwindcss/colors.js";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -11,6 +12,9 @@ export default {
     extend: {
       borderWidth: {
         '1': '1px'
+      },
+      colors: {
+        primary: colors.violet
       }
     }
   },
