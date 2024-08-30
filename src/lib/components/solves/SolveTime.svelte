@@ -1,14 +1,21 @@
 <script lang="ts">
     import {Penalty, type Solve} from "$lib/types/solve.type";
+    import {createEventDispatcher} from "svelte";
 
     export let editable: boolean;
     export let solveData: Solve;
+
+    const dispatch = createEventDispatcher()
 
     let isSelected = false;
     let solve: HTMLElement | null;
 
     function selectSolve() {
         isSelected = !isSelected;
+
+        dispatch('select', {
+            data: solveData,
+        })
     }
 
     $: if (solve) {

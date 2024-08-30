@@ -3,7 +3,7 @@
 </script>
 
 <button class:primary={color === 'primary'} class:secondary={color === 'secondary'}
-        class="rounded-sm font-medium transition-colors duration-300 ease-in-out px-2.5 py-0.5 flex justify-center items-center h-full"
+        class="rounded-md font-medium transition-colors duration-300 ease-in-out px-1.5 py-0.5 flex justify-center items-center outline-none"
         on:click>
     <slot />
 </button>

@@ -13,7 +13,7 @@ export function getMeanTime(): number | undefined {
             .map(item => {
                 let time = item.time;
 
-                if (item.penalty === 1) {
+                if (item.penalty === Penalty.PlusTwo) {
                     time += 2;
                 }
 
@@ -35,10 +35,11 @@ export function getAverage(num: number): number | undefined {
         if(!d) return;
 
         let times = d
+            .filter(i => i.penalty !== Penalty.DNF)
             .map(item => {
                 let time = item.time;
 
-                if (item.penalty === 1) {
+                if (item.penalty === Penalty.PlusTwo) {
                     time += 2;
                 }
 
