@@ -1,5 +1,6 @@
 import {scrambleData} from "$lib/store";
 import {Penalty, type Solve} from "$lib/types/solve.type";
+import toast from "svelte-french-toast";
 
 const databaseName: string = 'solves'
 
@@ -65,6 +66,8 @@ export function deleteSolves(solves: Solve[]): void {
     const updatedData = data.filter(item => !solves.some(solve => solve.date === item.date))
 
     setData(updatedData)
+
+    toast.success('Solves deleted successfully.')
 }
 
 export function deleteSolve(solve: Solve): void {
@@ -73,6 +76,8 @@ export function deleteSolve(solve: Solve): void {
     const updatedData = data.filter(item => item.date !== solve.date)
 
     setData(updatedData)
+
+    toast.success('Solve deleted successfully.')
 }
 
 function setData(data: Solve[]): void {
