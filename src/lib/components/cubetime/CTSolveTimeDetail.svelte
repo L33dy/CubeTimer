@@ -27,11 +27,11 @@
 <div class="flex flex-col bg-white rounded-md border-1 border-gray-200 absolute
     top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] z-50 px-4 pt-2 pb-4" in:scale={{delay: 150}} out:scale>
     <div class="flex items-center justify-between border-b-1 border-gray-200">
-        {#if penalty === Penalty.None}
+        {#if penalty === Penalty.NONE}
             <span class="font-semibold text-2xl">
                 {time.toFixed(3)}
             </span>
-            {:else if penalty === Penalty.PlusTwo}
+            {:else if penalty === Penalty.PLUSTWO}
             <div class="flex items-center gap-2">
                 <span class="font-semibold text-2xl">
                     {(time+2).toFixed(3)}
@@ -60,12 +60,12 @@
         </p>
         <ScrambleDisplay {scramble} {puzzleType} />
         <div class="flex justify-end items-center w-full gap-2">
-            <CTButton color="white" disabled={penalty === Penalty.None} icon="i-[fluent--checkmark-circle-12-regular]"
-                      on:click={() => editPenalty(solveData, Penalty.None)} size="small">
+            <CTButton color="white" disabled={penalty === Penalty.NONE} icon="i-[fluent--checkmark-circle-12-regular]"
+                      on:click={() => editPenalty(solveData, Penalty.NONE)} size="small">
                 OK
             </CTButton>
-            <CTButton color="white" disabled={penalty === Penalty.PlusTwo} icon="i-[mynaui--two-circle]"
-                      on:click={() => editPenalty(solveData, Penalty.PlusTwo)} size="small">
+            <CTButton color="white" disabled={penalty === Penalty.PLUSTWO} icon="i-[mynaui--two-circle]"
+                      on:click={() => editPenalty(solveData, Penalty.PLUSTWO)} size="small">
                 +2
             </CTButton>
             <CTButton color="white" disabled={penalty === Penalty.DNF} icon="i-[jam--close-circle]"
@@ -85,6 +85,10 @@
             Delete
         </CTButton>
     </div>
+    <button on:click={closeDetail}
+            class="absolute -top-10 -right-10 bg-white border-1 border-gray-200 hover:border-gray-400 transition-colors duration-300 rounded-full w-8 h-8 flex justify-center items-center">
+        <span class="i-[material-symbols--close]" />
+    </button>
 </div>
 
 <style lang="postcss">

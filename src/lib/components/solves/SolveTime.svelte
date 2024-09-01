@@ -30,7 +30,7 @@
 
 <button bind:this={solve} on:click={selectSolve} disabled={!editable} class="h-[60px] max-h-[60px] bg-white px-8 rounded-md shadow-md transition-all duration-300 ease-in-out flex flex-col justify-center items-center">
     <span class="text-lg font-medium">
-        { solveData.penalty === Penalty.None ? solveData.time : solveData.penalty === Penalty.PlusTwo ? `${solveData.time}+` : 'DNF'}
+        { solveData.penalty === Penalty.NONE ? solveData.time : solveData.penalty === Penalty.PLUSTWO ? `${solveData.time}+` : 'DNF'}
     </span>
     <span id="checkmark" class="bg-white rounded-full w-4 h-4 hidden justify-center items-center">
         <span class="i-[bi--check] text-violet-500" />

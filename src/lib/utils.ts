@@ -13,7 +13,7 @@ export function getMeanTime(): number | undefined {
             .map(item => {
                 let time = item.time;
 
-                if (item.penalty === Penalty.PlusTwo) {
+                if (item.penalty === Penalty.PLUSTWO) {
                     time += 2;
                 }
 
@@ -39,7 +39,7 @@ export function getAverage(num: number): number | undefined {
             .map(item => {
                 let time = item.time;
 
-                if (item.penalty === Penalty.PlusTwo) {
+                if (item.penalty === Penalty.PLUSTWO) {
                     time += 2;
                 }
 

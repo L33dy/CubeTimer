@@ -10,8 +10,12 @@
         font-style: normal;
     }
 
+    html {
+        @apply h-full;
+    }
+
     body {
-        @apply bg-gray-100 h-screen;
+        @apply bg-gray-100 min-h-full;
     }
 
     /* Chrome, Safari, Edge, Opera */

@@ -7,7 +7,7 @@ const databaseName: string = 'solves'
 export function saveData(time: number, scramble: string, puzzleType: string): void {
     let data = getData() ?? []
 
-    data.push(<Solve>{date: Date.now(), scramble: scramble, time: time, puzzleType: puzzleType, note: "", penalty: Penalty.None})
+    data.push(<Solve>{date: Date.now(), scramble: scramble, time: time, puzzleType: puzzleType, note: "", penalty: Penalty.NONE})
 
     setData(data)
 }

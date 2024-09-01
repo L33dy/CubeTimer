@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {cubeType, scrambleData} from "$lib/store";
+    import {puzzleType, scrambleData} from "$lib/store";
     import {onMount} from "svelte";
     import CTSolveTime from "$lib/components/cubetime/CTSolveTime.svelte";
 
@@ -10,7 +10,7 @@
     })
 
     function updateCubeType() {
-        $cubeType = typeValue;
+        $puzzleType = typeValue;
     }
 </script>
 

@@ -19,7 +19,7 @@
     {:else}
     <main class="flex w-full h-full">
         <Navbar />
-        <div class="ml-[350px] py-24 px-10 h-full w-full relative">
+        <div class="ml-[350px] py-24 px-10 min-h-screen w-full relative">
             <slot />
         </div>
     </main>

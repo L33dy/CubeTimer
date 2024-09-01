@@ -24,12 +24,12 @@
         {
             name: "No Penalty",
             icon: "i-[fluent--checkmark-circle-12-regular]",
-            onClick: () => editPenalty(Array.from($solves), Penalty.None)
+            onClick: () => editPenalty(Array.from($solves), Penalty.NONE)
         },
         {
             name: "+2",
             icon: "i-[mynaui--two-circle]",
-            onClick: () => editPenalty(Array.from($solves), Penalty.PlusTwo)
+            onClick: () => editPenalty(Array.from($solves), Penalty.PLUSTWO)
         },
         {
             name: "DNF",

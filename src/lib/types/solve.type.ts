@@ -1,6 +1,6 @@
 export enum Penalty {
-    None,
-    PlusTwo,
+    NONE,
+    PLUSTWO,
     DNF
 }
 
