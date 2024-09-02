@@ -1,11 +1,12 @@
 <script lang="ts">
     import {Penalty, type Solve} from "$lib/types/solve.type";
-    import {createEventDispatcher} from "svelte";
+    import {createEventDispatcher, onMount} from "svelte";
     import {fade, scale} from "svelte/transition";
     import CTButton from "$lib/components/cubetime/CTButton.svelte";
     import {addNote, editPenalty} from "$lib/database";
     import ScrambleDisplay from "$lib/components/solves/ScrambleDisplay.svelte";
     import {deleteSolve} from "$lib/database.js";
+    import toast from "svelte-french-toast";
 
     export let solveData: Solve;
 
@@ -14,6 +15,17 @@
     $: ({date, time, scramble, puzzleType, penalty, note} = solveData)
     $: commentInput = note
 
+    async function copyScramble() {
+        await toast.promise <void>(
+            navigator.clipboard.writeText(scramble),
+            {
+                loading: 'Copying...',
+                success: 'Scramble copied!',
+                error: 'Could not copy :('
+            }
+        )
+    }
+
     function closeDetail() {
         addNote(solveData, commentInput)
 
@@ -21,6 +33,7 @@
     }
 </script>
 
+<!-- TODO: Fix aria warnings -->
 <div class="w-screen h-screen bg-gray-100/10 backdrop-blur-md z-50 fixed top-0 left-0" on:click={closeDetail}
      transition:fade={{duration: 150}}/>
 
@@ -31,16 +44,16 @@
             <span class="font-semibold text-2xl">
                 {time.toFixed(3)}
             </span>
-            {:else if penalty === Penalty.PLUSTWO}
+        {:else if penalty === Penalty.PLUSTWO}
             <div class="flex items-center gap-2">
                 <span class="font-semibold text-2xl">
-                    {(time+2).toFixed(3)}
+                    {(time + 2).toFixed(3)}
                 </span>
                 <span class="text-gray-600 text-sm">
                     ({time.toFixed(3)}+)
                 </span>
             </div>
-            {:else if penalty === Penalty.DNF}
+        {:else if penalty === Penalty.DNF}
             <span class="font-semibold text-2xl">
                 DNF
             </span>
@@ -58,7 +71,7 @@
         <p class="text-center font-medium text-lg">
             {scramble}
         </p>
-        <ScrambleDisplay {scramble} {puzzleType} />
+        <ScrambleDisplay {puzzleType} {scramble}/>
         <div class="flex justify-end items-center w-full gap-2">
             <CTButton color="white" disabled={penalty === Penalty.NONE} icon="i-[fluent--checkmark-circle-12-regular]"
                       on:click={() => editPenalty(solveData, Penalty.NONE)} size="small">
@@ -80,14 +93,17 @@
         </p>
         <textarea bind:value={commentInput} placeholder="Add a note..."></textarea>
     </div>
-    <div class="flex justify-end items-center pt-4">
-        <CTButton on:click={() => deleteSolve(solveData)} color="red" icon="i-[solar--trash-bin-trash-linear]">
+    <div class="flex justify-end items-center gap-2 pt-4">
+        <CTButton color="primary" icon="i-[prime--copy]" on:click={copyScramble}>
+            Copy Scramble
+        </CTButton>
+        <CTButton color="red" icon="i-[solar--trash-bin-trash-linear]" on:click={() => deleteSolve(solveData)}>
             Delete
         </CTButton>
     </div>
-    <button on:click={closeDetail}
-            class="absolute -top-10 -right-10 bg-white border-1 border-gray-200 hover:border-gray-400 transition-colors duration-300 rounded-full w-8 h-8 flex justify-center items-center">
-        <span class="i-[material-symbols--close]" />
+    <button class="absolute -top-10 -right-10 bg-white border-1 border-gray-300 hover:border-gray-400 transition-colors duration-300 rounded-full w-8 h-8 flex justify-center items-center"
+            on:click={closeDetail}>
+        <span class="i-[material-symbols--close]"/>
     </button>
 </div>
 

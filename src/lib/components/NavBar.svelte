@@ -3,7 +3,7 @@
     import {version} from "$app/environment";
 </script>
 
-<div class="bg-white h-screen fixed top-0 w-[350px] px-6 py-5 flex flex-col">
+<div class="bg-white h-screen fixed top-0 w-[350px] px-6 py-5 flex flex-col shadow-sm">
     <h1 class="text-3xl font-medium bg-gradient-to-r from-violet-500 to-violet-200 text-transparent bg-clip-text">CubeTimer.</h1>
     <nav class="w-full flex flex-col justify-start items-start gap-5 mt-10 ml-3">
         <a href="/" class:active={$page.url.pathname === "/"}>
@@ -19,7 +19,7 @@
             <span>Documentation</span>
         </a>
         <!--<a href="/settings" class:active={$page.url.pathname === "/settings"}>
-            <img src="../../../icons/wrench.svg" alt="wrench" class="w-7">
+            <span class="i-[mingcute--settings-3-fill] text-2xl" />
             <span>Settings</span>
         </a>-->
     </nav>

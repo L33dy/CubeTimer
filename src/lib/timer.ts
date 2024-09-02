@@ -15,7 +15,7 @@ export interface Time {
     milliseconds: number
 }
 
-const prepareTime = 1000;
+const prepareTime = 500;
 
 let startTime: number;
 let interval: number | undefined;

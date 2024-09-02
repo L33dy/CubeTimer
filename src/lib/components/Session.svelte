@@ -5,9 +5,7 @@
 
     let typeValue: string;
 
-    onMount(() => {
-        updateCubeType()
-    })
+    onMount(() => typeValue = $puzzleType)
 
     function updateCubeType() {
         $puzzleType = typeValue;
