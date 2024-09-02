@@ -71,7 +71,7 @@ function startTimer() {
 
     interval = setInterval(() => {
         updateTime()
-    }, 10)
+    }, 1)
 }
 
 function stopTimer() {

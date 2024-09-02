@@ -15,7 +15,7 @@
 
     let solves = writable(new Set<Solve>())
 
-    let toggleEdit: boolean = false;
+    let selectMode = false;
     let showOptions: boolean;
 
     let areSelected: boolean = false;
@@ -55,7 +55,7 @@
     }
 
     function cancel() {
-        toggleEdit = false
+        selectMode = false
         areSelected = false
     }
 
@@ -70,7 +70,7 @@
 
 <div class="flex flex-col justify-center items-center gap-10 w-[400px] mx-auto">
     <div class="flex justify-end w-full">
-        {#if toggleEdit}
+        {#if selectMode}
             <div class="flex items-center justify-end gap-2 w-full">
                 <div class="mr-auto relative">
                     <button on:click={toggleOptions} class="rounded-md bg-violet-200 hover:bg-violet-300 text-violet-700 font-medium transition-colors duration-300 ease-in-out p-1 flex justify-center items-center">
@@ -101,16 +101,21 @@
                 </CTButton>
             </div>
         {:else}
-            <CTButton on:click={() => toggleEdit = true} color="primary">
+            <CTButton on:click={() => selectMode = true} color="primary">
                 Select
             </CTButton>
         {/if}
     </div>
-    {#if $scrambleData}
+    {#if $scrambleData && $scrambleData.length > 0}
         <div class="grid grid-cols-3 gap-5 w-full">
             {#each $scrambleData as solveData}
                 <CTSolveTime on:click={() => showDetail(solveData)} {solveData} editable={true} />
             {/each}
         </div>
+
+        {:else}
+        <p class="text-center whitespace-nowrap">
+            No solves on the board yet. Start now and track your progress!
+        </p>
     {/if}
 </div>
