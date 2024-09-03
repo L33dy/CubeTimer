@@ -18,10 +18,10 @@
             <span class="i-[mingcute--paper-fill] text-2xl" />
             <span>Documentation</span>
         </a>
-        <!--<a href="/settings" class:active={$page.url.pathname === "/settings"}>
+        <a href="/settings" class:active={$page.url.pathname === "/settings"}>
             <span class="i-[mingcute--settings-3-fill] text-2xl" />
             <span>Settings</span>
-        </a>-->
+        </a>
     </nav>
     <div class="flex justify-between w-full mt-auto">
         <div class="flex flex-col gap-1.5">
