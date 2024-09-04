@@ -2,7 +2,7 @@ import {scrambleData} from "$lib/store";
 import {Penalty, type Solve} from "$lib/types/solve.type";
 import toast from "svelte-french-toast";
 
-const databaseName: string = 'solves'
+const databaseName: string = 'ct_solves'
 
 export function saveData(time: number, scramble: string, puzzleType: string): void {
     let data = getData() ?? []

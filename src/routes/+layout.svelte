@@ -1,6 +1,6 @@
 <script lang="ts">
     import '../main.css'
-    import {scrambleData} from "$lib/store";
+    import {scrambleData, settingsData} from "$lib/store";
     import {onMount} from "svelte";
     import Navbar from "$lib/components/NavBar.svelte";
     import {getData} from "$lib/database";
@@ -8,9 +8,11 @@
     import CTSolveTimeDetail from "$lib/components/cubetime/CTSolveTimeDetail.svelte";
     import {detailData, visible, hideDetail} from "$lib/solveDetail";
     import {Toaster} from "svelte-french-toast";
+    import {getSettings} from "$lib/settings";
 
     onMount(() => {
         $scrambleData = getData()
+        $settingsData = getSettings()
     })
 </script>
 

@@ -1,6 +1,6 @@
 import {get, writable} from "svelte/store";
 import {saveData} from "$lib/database";
-import {puzzleType, sequence} from "$lib/store";
+import {puzzleType, sequence, settingsData} from "$lib/store";
 
 export enum TimerState {
     IDLE,
@@ -14,8 +14,6 @@ export interface Time {
     seconds: number
     milliseconds: number
 }
-
-const prepareTime = 500;
 
 let startTime: number;
 let interval: number | undefined;
@@ -53,6 +51,8 @@ export function togglePrepare(e: KeyboardEvent) {
 
 function prepareTimer() {
     state.set(TimerState.PREPARING)
+
+    let prepareTime = get(settingsData)?.timerSettings.holdTime
 
     time.set({
         total: 0,

@@ -1,30 +1,24 @@
 <script lang="ts">
-    let checked: boolean;
-
+    export let checked: boolean = false;
     export let onCheck: (checked: boolean) => void;
 </script>
 
-<input bind:checked={checked} on:change={() => onCheck(checked)} type="checkbox" id="switch" />
-<label for="switch"></label>
+<input bind:checked={checked} on:change={() => onCheck(checked)} type="checkbox" />
 
 <style lang="postcss">
-    input[type=checkbox] {
-        @apply w-0 h-0 invisible;
+    input {
+        @apply appearance-none cursor-pointer relative w-14 h-7 rounded-full outline-none bg-gray-300 transition-colors duration-300 ease-in-out;
     }
 
-    input:checked + label {
+    input::after {
+        @apply content-[''] absolute top-1/2 left-0.5 -translate-y-1/2 rounded-full bg-white w-6 h-6 transition-all duration-300 ease-in-out;
+    }
+
+    input:checked {
         @apply bg-primary-500;
     }
 
-    input:checked + label:after {
-        @apply left-[calc(100%-4px)] -translate-x-full;
-    }
-
-    label {
-        @apply cursor-pointer bg-gray-500 block rounded-full relative w-12 h-6 transition-colors duration-300 ease-in-out;
-    }
-
-    label:after {
-        @apply content-[''] absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-all duration-300 ease-in-out;
+    input:checked::after {
+        @apply left-[calc(100%-2px)] -translate-x-full;
     }
 </style>
