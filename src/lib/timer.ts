@@ -26,6 +26,28 @@ export const time = writable<Time>({
 })
 export const state = writable<TimerState>(TimerState.IDLE)
 
+let prepareTime: number;
+let timerUpdate: number;
+
+settingsData.subscribe(value => {
+    prepareTime = value?.timerSettings.holdTime
+
+    switch(value?.timerSettings.timerUpdate) {
+        case 0:
+         timerUpdate = 1000
+            break
+        case 1:
+            timerUpdate = 100
+            break
+        case 2:
+            timerUpdate = 10
+            break
+        case 3:
+            timerUpdate = 1
+            break
+    }
+})
+
 export function toggleStart(e: KeyboardEvent) {
     let currentState = get(state)
 
@@ -52,8 +74,6 @@ export function togglePrepare(e: KeyboardEvent) {
 function prepareTimer() {
     state.set(TimerState.PREPARING)
 
-    let prepareTime = get(settingsData)?.timerSettings.holdTime
-
     time.set({
         total: 0,
         seconds: 0,
@@ -71,7 +91,7 @@ function startTimer() {
 
     interval = setInterval(() => {
         updateTime()
-    }, 1)
+    }, timerUpdate)
 }
 
 function stopTimer() {

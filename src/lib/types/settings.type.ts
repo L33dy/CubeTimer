@@ -6,4 +6,5 @@ export interface TimerSettings {
     useInspection: boolean
     inspectionCounts: boolean
     holdTime: number
+    timerUpdate: number
 }

@@ -9,6 +9,7 @@
     import type {TimerSettings} from "$lib/types/settings.type";
     import {updateSettingValue} from "$lib/settings";
     import {clamp} from "$lib/math";
+    import CTSelect from "$lib/components/cubetime/CTSelect.svelte";
 
     let timerSettings: TimerSettings;
 
@@ -31,6 +32,7 @@
             </h4>
             <CTSwitch checked={timerSettings.inspectionCounts} onCheck={(checked) => updateSettingValue("timerSettings", "inspectionCounts", checked)} />
         </SettingsSubMenuItem>
+
         <SettingsSubMenuDivider />
         <SettingsSubMenuItem>
             <h4 slot="title">
@@ -41,6 +43,15 @@
             </h4>
             <CTCounter onMinus={() => updateSettingValue("timerSettings", "holdTime", clamp(timerSettings.holdTime - 10, 0, 1000))}
                        onPlus={() => updateSettingValue("timerSettings", "holdTime", clamp(timerSettings.holdTime + 10, 0, 1000))} />
+        </SettingsSubMenuItem>
+        <SettingsSubMenuDivider />
+
+        <SettingsSubMenuItem>
+            <h4 slot="title">
+                Timer Update
+            </h4>
+            <CTSelect onChange={(value) => updateSettingValue("timerSettings", "timerUpdate", value)}
+                      selected={timerSettings.timerUpdate} options={["0 dec. points", "1 dec. point", "2 dec. points", "3 dec. points"]} />
         </SettingsSubMenuItem>
     </SettingsSubMenu>
 </SettingsMenu>

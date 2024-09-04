@@ -28,7 +28,8 @@ function loadDefaultSettings(): string {
         timerSettings: {
             useInspection: true,
             inspectionCounts: false,
-            holdTime: 350
+            holdTime: 350,
+            timerUpdate: 3
         }
     }
 
