@@ -7,9 +7,10 @@
     import CTCounter from "$lib/components/cubetime/CTCounter.svelte";
     import {settingsData} from "$lib/store";
     import type {TimerSettings} from "$lib/types/settings.type";
-    import {updateSettingValue} from "$lib/settings";
+    import {resetSettings, updateSettingValue} from "$lib/settings";
     import {clamp} from "$lib/math";
     import CTSelect from "$lib/components/cubetime/CTSelect.svelte";
+    import CTButton from "$lib/components/cubetime/CTButton.svelte";
 
     let timerSettings: TimerSettings;
 
@@ -18,40 +19,48 @@
     }
 </script>
 
-<SettingsMenu name="General" icon="i-[fa6-solid--gears]">
-    <SettingsSubMenu name="Timer Settings" icon="i-[gg--timer]">
-        <SettingsSubMenuItem>
-            <h4 slot="title">
-                Use Inspection
-            </h4>
-            <CTSwitch checked={timerSettings.useInspection} onCheck={(checked) => updateSettingValue("timerSettings", "useInspection", checked)} />
-        </SettingsSubMenuItem>
-        <SettingsSubMenuItem>
-            <h4 slot="title">
-                Inspection Counts Down
-            </h4>
-            <CTSwitch checked={timerSettings.inspectionCounts} onCheck={(checked) => updateSettingValue("timerSettings", "inspectionCounts", checked)} />
-        </SettingsSubMenuItem>
+<div class="flex flex-col justify-center items-center gap-6">
+    <SettingsMenu name="General" icon="i-[fa6-solid--gears]">
+        <SettingsSubMenu name="Timer Settings" icon="i-[gg--timer]">
+            <SettingsSubMenuItem>
+                <h4 slot="title">
+                    Use Inspection
+                </h4>
+                <CTSwitch checked={timerSettings.useInspection} onCheck={(checked) => updateSettingValue("timerSettings", "useInspection", checked)} />
+            </SettingsSubMenuItem>
+            {#if timerSettings.useInspection}
+                <SettingsSubMenuItem>
+                    <h4 slot="title">
+                        Inspection Counts Down
+                    </h4>
+                    <CTSwitch checked={timerSettings.inspectionCountsDown} onCheck={(checked) => updateSettingValue("timerSettings", "inspectionCountsDown", checked)} />
+                </SettingsSubMenuItem>
+            {/if}
 
-        <SettingsSubMenuDivider />
-        <SettingsSubMenuItem>
-            <h4 slot="title">
-                Hold Down Time:
-                <span class="font-normal">
+            <SettingsSubMenuDivider />
+            <SettingsSubMenuItem>
+                <h4 slot="title">
+                    Hold Down Time:
+                    <span class="font-normal">
                     {timerSettings.holdTime / 1000}s
                 </span>
-            </h4>
-            <CTCounter onMinus={() => updateSettingValue("timerSettings", "holdTime", clamp(timerSettings.holdTime - 10, 0, 1000))}
-                       onPlus={() => updateSettingValue("timerSettings", "holdTime", clamp(timerSettings.holdTime + 10, 0, 1000))} />
-        </SettingsSubMenuItem>
-        <SettingsSubMenuDivider />
+                </h4>
+                <CTCounter onMinus={() => updateSettingValue("timerSettings", "holdTime", clamp(timerSettings.holdTime - 10, 0, 1000))}
+                           onPlus={() => updateSettingValue("timerSettings", "holdTime", clamp(timerSettings.holdTime + 10, 0, 1000))} />
+            </SettingsSubMenuItem>
+            <SettingsSubMenuDivider />
 
-        <SettingsSubMenuItem>
-            <h4 slot="title">
-                Timer Update
-            </h4>
-            <CTSelect onChange={(value) => updateSettingValue("timerSettings", "timerUpdate", value)}
-                      selected={timerSettings.timerUpdate} options={["0 dec. points", "1 dec. point", "2 dec. points", "3 dec. points"]} />
-        </SettingsSubMenuItem>
-    </SettingsSubMenu>
-</SettingsMenu>
+            <SettingsSubMenuItem>
+                <h4 slot="title">
+                    Timer Update
+                </h4>
+                <CTSelect onChange={(value) => updateSettingValue("timerSettings", "timerUpdate", value)}
+                          selected={timerSettings.timerUpdate} options={["0 dec. points", "1 dec. point", "2 dec. points", "3 dec. points"]} />
+            </SettingsSubMenuItem>
+        </SettingsSubMenu>
+    </SettingsMenu>
+
+    <CTButton on:click={resetSettings} icon="i-[bx--reset]" color="red">
+        Reset Settings
+    </CTButton>
+</div>

@@ -1,7 +1,18 @@
 import type {Settings} from "$lib/types/settings.type";
 import {settingsData} from "$lib/store";
+import toast from "svelte-french-toast";
 
 const databaseName = 'ct_settings'
+
+const defaultSettings: Settings = {
+    timerSettings: {
+        useInspection: false,
+        inspectionCountsDown: false,
+        holdTime: 350,
+        timerUpdate: 3
+    }
+}
+
 
 export function getSettings(): Settings {
     let data = localStorage.getItem(databaseName)
@@ -23,17 +34,14 @@ export function updateSettingValue(setting: string, key: any, value: any): void 
     updateSettings(data)
 }
 
+export function resetSettings(): void {
+    localStorage.removeItem(databaseName)
+    getSettings()
+
+    toast.success('Settings have been reset.')
+}
+
 function loadDefaultSettings(): string {
-    const defaultSettings: Settings = {
-        timerSettings: {
-            useInspection: true,
-            inspectionCounts: false,
-            holdTime: 350,
-            timerUpdate: 3
-        }
-    }
-
-
     return JSON.stringify(defaultSettings);
 }
 
