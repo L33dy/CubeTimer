@@ -1,7 +1,7 @@
 <script lang="ts">
     import {fade} from "svelte/transition";
     import {scramble} from 'cube-scramble.js'
-    import {puzzleType, sequence, scrambleData} from "$lib/store.js";
+    import {puzzleType, sequence, scrambleData, settingsData} from "$lib/store.js";
     import Session from "$lib/components/Session.svelte";
     import Stats from "$lib/components/Stats.svelte";
     import {
@@ -15,6 +15,9 @@
     } from "$lib/timer";
     import CTButton from "$lib/components/cubetime/CTButton.svelte";
     import {InspectionState, TimerState} from "$lib/types/timer.type";
+    import type {TimerSettings} from "$lib/types/settings.type";
+
+    let timerSettings: TimerSettings;
 
     function keyDown(e: KeyboardEvent): void {
         if (e.code === "Enter") {
@@ -27,6 +30,9 @@
     }
 
     $: ($scrambleData, $puzzleType), generateNewSequence()
+    $: if ($settingsData) {
+        ({timerSettings} = $settingsData)
+    }
 </script>
 
 <svelte:body on:keydown={(e) => {keyDown(e); togglePrepare(e)}} on:keyup={toggleStart}/>
@@ -36,7 +42,7 @@
 
 <div class="flex flex-col justify-center items-center mt-32 mx-auto w-3/4 relative">
     {#key $sequence}
-        <p in:fade={{duration: 450}} class:opacity-0={$timerState !== TimerState.IDLE}
+        <p in:fade={{duration: 450}} class:opacity-0={$timerState !== TimerState.IDLE || $inspectionState !== InspectionState.NONE}
            class="text-4xl font-medium transition-opacity duration-150 text-center cursor-default"
         >
             {$sequence ? $sequence : ""}
@@ -54,13 +60,15 @@
             {`${$time.seconds}.${$time.milliseconds.toString().padStart(3, "0")}`}
         </p>
         {:else}
-        <div class="flex flex-col justify-center items-center gap-4">
+        <div in:fade={{duration: 200}} class="flex flex-col justify-center items-center gap-4">
             <p class="text-6xl font-bold w-fit">
                 {$inspectionTime}
             </p>
-            <CTButton on:click={cancelInspection} color="white">
-                Cancel
-            </CTButton>
+            {#if timerSettings.showCancelInspection}
+                <CTButton on:click={cancelInspection} color="white">
+                    Cancel
+                </CTButton>
+            {/if}
         </div>
     {/if}
 </div>

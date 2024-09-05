@@ -8,6 +8,7 @@ const defaultSettings: Settings = {
     timerSettings: {
         useInspection: false,
         inspectionCountsDown: false,
+        showCancelInspection: true,
         holdTime: 350,
         timerUpdate: 3
     }

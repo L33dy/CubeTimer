@@ -35,6 +35,12 @@
                     </h4>
                     <CTSwitch checked={timerSettings.inspectionCountsDown} onCheck={(checked) => updateSettingValue("timerSettings", "inspectionCountsDown", checked)} />
                 </SettingsSubMenuItem>
+                <SettingsSubMenuItem>
+                    <h4 slot="title">
+                        Show Cancel Inspection
+                    </h4>
+                    <CTSwitch checked={timerSettings.showCancelInspection} onCheck={(checked) => updateSettingValue("timerSettings", "showCancelInspection", checked)} />
+                </SettingsSubMenuItem>
             {/if}
 
             <SettingsSubMenuDivider />

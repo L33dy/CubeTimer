@@ -30,7 +30,7 @@
         </select>
     </div>
     {#if $scrambleData && $scrambleData.length > 0}
-        <div class="grid grid-cols-3 max-h-[172px] overflow-y-auto gap-2 w-full">
+        <div class="grid grid-cols-3 max-h-[172px] gap-2 w-full">
             {#each $scrambleData as scramble (scramble.date)}
                 <CTSolveTime solveData={scramble} />
             {/each}

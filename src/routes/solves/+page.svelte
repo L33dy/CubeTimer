@@ -110,7 +110,7 @@
         </div>
         <div class="grid grid-cols-3 gap-5 w-full">
             {#each $scrambleData as solveData}
-                <CTSolveTime on:click={() => showDetail(solveData)} {solveData} editable={true}/>
+                <CTSolveTime on:click={() => showDetail(solveData)} {solveData} selectable={true}/>
             {/each}
         </div>
 
