@@ -16,8 +16,6 @@
     let selectMode = false;
     let showOptions: boolean;
 
-    let areSelected: boolean = false;
-
     const penaltyOptions: PopperOption[] = [
         {
             name: "No Penalty",
@@ -46,15 +44,8 @@
         })
     }
 
-    function selectAll(): void {
-        areSelected = !areSelected;
-
-        $solves = areSelected ? new Set($scrambleData) : new Set()
-    }
-
     function cancel() {
         selectMode = false
-        areSelected = false
     }
 
     function clearSession(): void {
@@ -95,9 +86,6 @@
                             </CTPopper>
                         {/if}
                     </div>
-                    <CTButton on:click={selectAll} color="primary">
-                        Select All
-                    </CTButton>
                     <CTButton on:click={cancel}>
                         Cancel
                     </CTButton>
@@ -110,7 +98,7 @@
         </div>
         <div class="grid grid-cols-3 gap-5 w-full">
             {#each $scrambleData as solveData}
-                <CTSolveTime on:click={() => showDetail(solveData)} {solveData} selectable={true}/>
+                <CTSolveTime onClick={() => showDetail(solveData)} {solveData} {selectMode} selectable={true} />
             {/each}
         </div>
 
