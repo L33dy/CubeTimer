@@ -22,6 +22,8 @@ export function clearData(): void {
     localStorage.removeItem(databaseName)
 
     scrambleData.set(getData())
+
+    toast.success('Session cleared!')
 }
 
 export function editPenalty(solve: Solve[] | Solve, penalty: Penalty): void {
