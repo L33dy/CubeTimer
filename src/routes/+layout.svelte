@@ -5,10 +5,10 @@
     import Navbar from "$lib/components/NavBar.svelte";
     import {getData} from "$lib/database";
     import CTLoading from "$lib/components/cubetime/CTLoading.svelte";
-    import CTSolveTimeDetail from "$lib/components/cubetime/CTSolveTimeDetail.svelte";
     import {detailData, visible, hideDetail} from "$lib/solveDetail";
     import {Toaster} from "svelte-french-toast";
     import {getSettings} from "$lib/settings";
+    import SolveTimeDetail from "$lib/components/solveDetail/SolveTimeDetail.svelte";
 
     onMount(() => {
         $scrambleData = getData()
@@ -28,7 +28,7 @@
 {/if}
 
 {#if $visible && $detailData}
-    <svelte:component this={CTSolveTimeDetail} solveData={$detailData} on:hide={hideDetail} />
+    <svelte:component this={SolveTimeDetail} solveData={$detailData} on:hide={hideDetail} />
 {/if}
 
 <Toaster />

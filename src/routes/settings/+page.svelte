@@ -51,8 +51,9 @@
                     {timerSettings.holdTime / 1000}s
                 </span>
                 </h4>
-                <CTCounter onMinus={() => updateSettingValue("timerSettings", "holdTime", clamp(timerSettings.holdTime - 10, 0, 1000))}
-                           onPlus={() => updateSettingValue("timerSettings", "holdTime", clamp(timerSettings.holdTime + 10, 0, 1000))} />
+                <CTCounter minusDisabled={timerSettings.holdTime === 0} plusDisabled={timerSettings.holdTime === 1000}
+                        onMinus={() => updateSettingValue("timerSettings", "holdTime", clamp(timerSettings.holdTime - 10, 0, 1000))}
+                        onPlus={() => updateSettingValue("timerSettings", "holdTime", clamp(timerSettings.holdTime + 10, 0, 1000))} />
             </SettingsSubMenuItem>
             <SettingsSubMenuDivider />
 

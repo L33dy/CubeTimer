@@ -13,7 +13,7 @@ const config = {
 		// See https://kit.svelte.dev/docs/adapters for more information about adapters.
 		adapter: adapter(),
 		version: {
-			name: '0.2.1'
+			name: '0.3.0'
 		}
 	}
 };

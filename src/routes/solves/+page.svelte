@@ -10,8 +10,10 @@
     import {deleteSolves} from "$lib/database.js";
     import CTSolveTime from "$lib/components/cubetime/CTSolveTime.svelte";
     import {showDetail} from "$lib/solveDetail";
+    import CTPopperSpace from "$lib/components/cubetime/CTPopperSpace.svelte";
 
     let solves = writable(new Set<Solve>())
+    let solveContainer: HTMLElement
 
     let selectMode = false;
     let showOptions: boolean;
@@ -44,8 +46,27 @@
         })
     }
 
+    function selectAll() {
+        const solves = solveContainer.children
+
+        for (const solve of solves) {
+            solve.setAttribute('data-selected', '')
+        }
+
+        $solves = new Set($scrambleData)
+    }
+
     function cancel() {
         selectMode = false
+        showOptions = false
+
+        const solves = solveContainer.children
+
+        for (const solve of solves) {
+            solve.removeAttribute('data-selected')
+        }
+
+        $solves = new Set()
     }
 
     function clearSession(): void {
@@ -74,10 +95,11 @@
                                         Clear Session
                                     </CTPopperButton>
                                 {:else}
-                                    <CTPopperButton icon="i-[fluent--warning-32-regular]" select={true}
+                                    <CTPopperButton icon="i-[fluent--warning-32-regular]" dropdown={true}
                                                     options={penaltyOptions}>
                                         Penalty
                                     </CTPopperButton>
+                                    <CTPopperSpace />
                                     <CTPopperButton on:click={() => deleteSolves(Array.from($solves))}
                                                     icon="i-[solar--trash-bin-minimalistic-linear]" color="red">
                                         Delete
@@ -86,6 +108,9 @@
                             </CTPopper>
                         {/if}
                     </div>
+                    <CTButton color="primary" on:click={selectAll}>
+                        Select All
+                    </CTButton>
                     <CTButton on:click={cancel}>
                         Cancel
                     </CTButton>
@@ -96,9 +121,9 @@
                 </CTButton>
             {/if}
         </div>
-        <div class="grid grid-cols-3 gap-5 w-full">
+        <div bind:this={solveContainer} class="grid grid-cols-3 gap-5 w-full">
             {#each $scrambleData as solveData}
-                <CTSolveTime onClick={() => showDetail(solveData)} {solveData} {selectMode} selectable={true} />
+                <CTSolveTime on:select={select} onClick={() => showDetail(solveData)} {solveData} {selectMode} />
             {/each}
         </div>
 
