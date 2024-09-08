@@ -1,12 +1,12 @@
 <script lang="ts">
-    export let color: 'primary' | 'secondary' | 'white' | 'red' = 'secondary'
+    export let color: 'primary' | 'secondary' | 'white' | 'red' | 'green' = 'secondary'
     export let size: 'small' | 'default' = 'default'
     export let icon: string | undefined = undefined
     export let disabled: boolean = false
 </script>
 
 <button class:primary={color === 'primary'} class:secondary={color === 'secondary'} class:white={color === 'white'}
-        class:red={color === 'red'} class:!text-sm={size === 'small'}
+        class:red={color === 'red'} class:!text-sm={size === 'small'} class:green={color === 'green'}
         class="rounded-md font-medium transition-colors duration-300 ease-in-out px-1.5 py-0.5 flex justify-center items-center gap-1 outline-none"
         on:click disabled={disabled}>
     {#if icon}
@@ -34,5 +34,9 @@
 
     .red {
         @apply bg-red-200 text-red-600 hover:bg-red-300;
+    }
+
+    .green {
+        @apply bg-green-200 text-green-600 hover:bg-green-300;
     }
 </style>

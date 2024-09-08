@@ -11,6 +11,7 @@
     import CTSolveTime from "$lib/components/cubetime/CTSolveTime.svelte";
     import {showDetail} from "$lib/solveDetail";
     import CTPopperSpace from "$lib/components/cubetime/CTPopperSpace.svelte";
+    import {createModal} from "$lib/modal";
 
     let solves = writable(new Set<Solve>())
     let solveContainer: HTMLElement

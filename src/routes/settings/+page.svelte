@@ -11,6 +11,7 @@
     import {clamp} from "$lib/math";
     import CTSelect from "$lib/components/cubetime/CTSelect.svelte";
     import CTButton from "$lib/components/cubetime/CTButton.svelte";
+    import {createModal} from "$lib/modal";
 
     let timerSettings: TimerSettings;
 

@@ -33,7 +33,8 @@
     }
 </script>
 
-<div tabindex="0" role="button" on:keypress={closeDetail} class="w-screen h-screen bg-gray-100/10 backdrop-blur-md z-50 fixed top-0 left-0" on:click={closeDetail}
+<div tabindex="0" role="button" on:keypress={closeDetail}
+     class="w-screen h-screen bg-gray-100/10 backdrop-blur-md z-50 fixed top-0 left-0 cursor-default" on:click={closeDetail}
      transition:fade={{duration: 150}}/>
 
 <div class="flex flex-col bg-white rounded-md border-1 border-gray-200 absolute

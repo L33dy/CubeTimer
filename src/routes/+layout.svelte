@@ -5,10 +5,12 @@
     import Navbar from "$lib/components/NavBar.svelte";
     import {getData} from "$lib/database";
     import CTLoading from "$lib/components/cubetime/CTLoading.svelte";
-    import {detailData, visible, hideDetail} from "$lib/solveDetail";
+    import {detailData, hideDetail} from "$lib/solveDetail";
+    import {currentModal} from "$lib/modal";
     import {Toaster} from "svelte-french-toast";
     import {getSettings} from "$lib/settings";
     import SolveTimeDetail from "$lib/components/solveDetail/SolveTimeDetail.svelte";
+    import ModalMain from "$lib/components/modals/ModalMain.svelte";
 
     onMount(() => {
         $scrambleData = getData()
@@ -27,8 +29,12 @@
     </main>
 {/if}
 
-{#if $visible && $detailData}
+{#if $detailData}
     <svelte:component this={SolveTimeDetail} solveData={$detailData} on:hide={hideDetail} />
+{/if}
+
+{#if $currentModal}
+    <ModalMain />
 {/if}
 
 <Toaster />
