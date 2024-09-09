@@ -18,6 +18,15 @@
     $: if ($settingsData) {
         ({timerSettings} = $settingsData);
     }
+
+    function reset() {
+        createModal({
+            type: 'confirm',
+            title: 'Are you sure you want to reset the settings?',
+            description: 'Your solves and sessions will be kept.',
+            onConfirm: resetSettings
+        })
+    }
 </script>
 
 <div class="flex flex-col justify-center items-center gap-6">
@@ -68,7 +77,7 @@
         </SettingsSubMenu>
     </SettingsMenu>
 
-    <CTButton on:click={resetSettings} icon="i-[bx--reset]" color="red">
+    <CTButton on:click={reset} icon="i-[bx--reset]" color="red">
         Reset Settings
     </CTButton>
 </div>
