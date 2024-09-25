@@ -33,7 +33,7 @@
     }
 
     .red {
-        @apply bg-red-200 text-red-600 hover:bg-red-300;
+        @apply bg-red-100 text-red-600 hover:bg-red-200;
     }
 
     .green {

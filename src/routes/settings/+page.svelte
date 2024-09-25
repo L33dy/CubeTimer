@@ -29,7 +29,7 @@
     }
 </script>
 
-<div class="flex flex-col justify-center items-center gap-6">
+<div class="flex flex-col justify-center items-center gap-8">
     <SettingsMenu name="General" icon="i-[fa6-solid--gears]">
         <SettingsSubMenu name="Timer Settings" icon="i-[gg--timer]">
             <SettingsSubMenuItem>
@@ -69,15 +69,23 @@
 
             <SettingsSubMenuItem>
                 <h4 slot="title">
+                    Timer Mode
+                </h4>
+                <CTSelect onChange={(value) => updateSettingValue("timerSettings", "timerMode", value === 0 ? 'typing' : 'timer')}
+                          selected={timerSettings.timerMode} options={['Typing', 'Timer']} />
+            </SettingsSubMenuItem>
+            <SettingsSubMenuItem>
+                <h4 slot="title">
                     Timer Update
                 </h4>
                 <CTSelect onChange={(value) => updateSettingValue("timerSettings", "timerUpdate", value)}
                           selected={timerSettings.timerUpdate} options={["0 dec. points", "1 dec. point", "2 dec. points", "3 dec. points"]} />
             </SettingsSubMenuItem>
         </SettingsSubMenu>
+        <div class="flex justify-center">
+            <CTButton on:click={reset} icon="i-[bx--reset]" color="red">
+                Reset General Settings
+            </CTButton>
+        </div>
     </SettingsMenu>
-
-    <CTButton on:click={reset} icon="i-[bx--reset]" color="red">
-        Reset Settings
-    </CTButton>
 </div>

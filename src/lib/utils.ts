@@ -62,3 +62,9 @@ export function getAverage(num: number): number | undefined {
 
     return parseFloat((sum / remaining.length).toFixed(2))
 }
+
+export function isValidTime(input: string): boolean {
+    const num = Number(input)
+
+    return !isNaN(num) && /^[0-9]+(\.[0-9]+)?$/.test(input)
+}

@@ -14,10 +14,6 @@
             <span class="i-[f7--hourglass-bottomhalf-fill] text-2xl" />
             <span>Solves</span>
         </a>
-        <a href="/docs" class:active={$page.url.pathname === "/docs"}>
-            <span class="i-[mingcute--paper-fill] text-2xl" />
-            <span>Documentation</span>
-        </a>
         <a href="/settings" class:active={$page.url.pathname === "/settings"}>
             <span class="i-[mingcute--settings-3-fill] text-2xl" />
             <span>Settings</span>

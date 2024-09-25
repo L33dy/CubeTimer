@@ -7,5 +7,6 @@ export interface TimerSettings {
     inspectionCountsDown: boolean
     showCancelInspection: boolean
     holdTime: number
+    timerMode: 'timer' | 'typing'
     timerUpdate: number
 }
