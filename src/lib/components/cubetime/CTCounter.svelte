@@ -1,18 +1,27 @@
 <script lang="ts">
-    export let onMinus: () => void;
-    export let onPlus: () => void;
-    export let minusDisabled: boolean = false;
-    export let plusDisabled: boolean = false;
+interface Props {
+  onMinus: () => void;
+  onPlus: () => void;
+  minusDisabled?: boolean;
+  plusDisabled?: boolean;
+}
+
+let {
+  onMinus,
+  onPlus,
+  minusDisabled = false,
+  plusDisabled = false,
+}: Props = $props()
 </script>
 
 <div class="rounded-lg flex items-center bg-gray-300 h-7 overflow-hidden">
-    <button disabled={minusDisabled} on:click={onMinus}>
-        <span class="i-[ic--baseline-minus]" />
-    </button>
-    <div class="w-[1px] h-3/4 bg-gray-400" />
-    <button disabled={plusDisabled} on:click={onPlus}>
-        <span class="i-[ic--baseline-plus]" />
-    </button>
+  <button aria-label="Minus" disabled={minusDisabled} onclick={onMinus}>
+    <span class="i-[ic--baseline-minus]"></span>
+  </button>
+  <div class="w-[1px] h-3/4 bg-gray-400"></div>
+  <button aria-label="Plus" disabled={plusDisabled} onclick={onPlus}>
+    <span class="i-[ic--baseline-plus]"></span>
+  </button>
 </div>
 
 <style>

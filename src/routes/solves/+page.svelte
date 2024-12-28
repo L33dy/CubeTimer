@@ -1,136 +1,136 @@
 <script lang="ts">
-    import {scrambleData} from "$lib/store";
-    import CTButton from "$lib/components/cubetime/CTButton.svelte";
-    import CTPopper from "$lib/components/cubetime/CTPopper.svelte";
-    import {clearData, editPenalty} from "$lib/database";
-    import {Penalty, type Solve} from "$lib/types/solve.type";
-    import {writable} from "svelte/store";
-    import CTPopperButton from "$lib/components/cubetime/CTPopperButton.svelte";
-    import type {PopperOption} from "$lib/types/popper.type";
-    import {deleteSolves} from "$lib/database.js";
-    import CTSolveTime from "$lib/components/cubetime/CTSolveTime.svelte";
-    import {showDetail} from "$lib/solveDetail";
-    import CTPopperSpace from "$lib/components/cubetime/CTPopperSpace.svelte";
-    import {createModal} from "$lib/modal";
+import CTButton from '$lib/components/cubetime/CTButton.svelte'
+import CTPopper from '$lib/components/cubetime/CTPopper.svelte'
+import CTPopperButton, { type PopperOption } from '$lib/components/cubetime/CTPopperButton.svelte'
+import CTSolveTime from '$lib/components/cubetime/CTSolveTime.svelte'
+import CTPopperSpace from '$lib/components/cubetime/CTPopperSpace.svelte'
+import { clearData, deleteSolves, editPenalty, Penalty, scrambleData, showDetail, type Solve } from '$lib/composables'
+import { SvelteSet } from 'svelte/reactivity'
 
-    let solves = writable(new Set<Solve>())
-    let solveContainer: HTMLElement
+let solves = $state(new SvelteSet<Solve>())
+let solveContainer = $state<HTMLElement>()
 
-    let selectMode = false;
-    let showOptions: boolean;
+let selectMode = $state(false)
+let showOptions = $state(false)
 
-    const penaltyOptions: PopperOption[] = [
-        {
-            name: "No Penalty",
-            icon: "i-[fluent--checkmark-circle-12-regular]",
-            onClick: () => editPenalty(Array.from($solves), Penalty.NONE)
-        },
-        {
-            name: "+2",
-            icon: "i-[mynaui--two-circle]",
-            onClick: () => editPenalty(Array.from($solves), Penalty.PLUSTWO)
-        },
-        {
-            name: "DNF",
-            icon: "i-[jam--close-circle]",
-            onClick: () => editPenalty(Array.from($solves), Penalty.DNF)
-        }
-    ]
+const penaltyOptions: PopperOption[] = [
+  {
+    name: 'No Penalty',
+    icon: 'i-[fluent--checkmark-circle-12-regular]',
+    onClick: () => editPenalty(Array.from(solves), Penalty.NONE),
+  },
+  {
+    name: '+2',
+    icon: 'i-[mynaui--two-circle]',
+    onClick: () => editPenalty(Array.from(solves), Penalty.PLUSTWO),
+  },
+  {
+    name: 'DNF',
+    icon: 'i-[jam--close-circle]',
+    onClick: () => editPenalty(Array.from(solves), Penalty.DNF),
+  }
+]
 
-    function select(event: CustomEvent) {
-        const data: Solve = event.detail.data
+function select(data: Solve) {
+  if (solves.has(data)) {
+    solves.delete(data)
+  }
+  else {
+    solves.add(data)
+  }
+}
 
-        solves.update(set => {
-            set.has(data) ? set.delete(data) : set.add(data)
+function selectAll() {
+  const solvesChildren = solveContainer?.children
 
-            return new Set(set)
-        })
-    }
+  for (const solve of solvesChildren) {
+    solve.setAttribute('scrambleData-selected', '')
+  }
 
-    function selectAll() {
-        const solves = solveContainer.children
+  solves = new SvelteSet(scrambleData.scrambles)
+}
 
-        for (const solve of solves) {
-            solve.setAttribute('data-selected', '')
-        }
+function cancel() {
+  selectMode = false
+  showOptions = false
 
-        $solves = new Set($scrambleData)
-    }
+  const solvesChildren = solveContainer?.children
 
-    function cancel() {
-        selectMode = false
-        showOptions = false
+  for (const solve of solvesChildren) {
+    solve.removeAttribute('scrambleData-selected')
+  }
 
-        const solves = solveContainer.children
+  solves = new SvelteSet()
+}
 
-        for (const solve of solves) {
-            solve.removeAttribute('data-selected')
-        }
+function clearSession(): void {
+  clearData()
+}
 
-        $solves = new Set()
-    }
-
-    function clearSession(): void {
-        clearData()
-    }
-
-    function toggleOptions(): void {
-        showOptions = !showOptions;
-    }
+function toggleOptions(): void {
+  showOptions = !showOptions
+}
 </script>
 
 <div class="flex flex-col justify-center items-center gap-10 w-[400px] mx-auto">
-    {#if $scrambleData && $scrambleData.length > 0}
-        <div class="flex justify-end w-full">
-            {#if selectMode}
-                <div class="flex items-center justify-end gap-2 w-full">
-                    <div class="mr-auto relative">
-                        <button on:click={toggleOptions}
-                                class="rounded-md bg-violet-200 hover:bg-violet-300 text-violet-700 font-medium transition-colors duration-300 ease-in-out p-1 flex justify-center items-center">
-                            <span class="i-[tabler--dots] text-lg"/>
-                        </button>
-                        {#if showOptions}
-                            <CTPopper>
-                                {#if $solves.size === 0}
-                                    <CTPopperButton on:click={clearSession} color="red" icon="i-[f7--bin-xmark]">
-                                        Clear Session
-                                    </CTPopperButton>
-                                {:else}
-                                    <CTPopperButton icon="i-[fluent--warning-32-regular]" dropdown={true}
-                                                    options={penaltyOptions}>
-                                        Penalty
-                                    </CTPopperButton>
-                                    <CTPopperSpace />
-                                    <CTPopperButton on:click={() => deleteSolves(Array.from($solves))}
-                                                    icon="i-[solar--trash-bin-minimalistic-linear]" color="red">
-                                        Delete
-                                    </CTPopperButton>
-                                {/if}
-                            </CTPopper>
-                        {/if}
-                    </div>
-                    <CTButton color="primary" on:click={selectAll}>
-                        Select All
-                    </CTButton>
-                    <CTButton on:click={cancel}>
-                        Cancel
-                    </CTButton>
-                </div>
-            {:else}
-                <CTButton on:click={() => selectMode = true} color="primary">
-                    Select
-                </CTButton>
+  {#if scrambleData.scrambles.length > 0}
+    <div class="flex justify-end w-full">
+      {#if selectMode}
+        <div class="flex items-center justify-end gap-2 w-full">
+          <div class="mr-auto relative">
+            <button
+              aria-label="Other options"
+              onclick={toggleOptions}
+              class="rounded-md bg-violet-200 hover:bg-violet-300 text-violet-700 font-medium transition-colors duration-300 ease-in-out p-1 flex justify-center items-center"
+            >
+              <span class="i-[tabler--dots] text-lg"></span>
+            </button>
+            {#if showOptions}
+              <CTPopper>
+                {#if solves.size === 0}
+                  <CTPopperButton onclick={clearSession} color="red" icon="i-[f7--bin-xmark]">
+                    Clear Session
+                  </CTPopperButton>
+                {:else}
+                  <CTPopperButton
+                    icon="i-[fluent--warning-32-regular]" dropdown={true}
+                    options={penaltyOptions}
+                  >
+                    Penalty
+                  </CTPopperButton>
+                  <CTPopperSpace />
+                  <CTPopperButton
+                    onclick={() => deleteSolves(Array.from(solves))}
+                    icon="i-[solar--trash-bin-minimalistic-linear]" color="red"
+                  >
+                    Delete
+                  </CTPopperButton>
+                {/if}
+              </CTPopper>
             {/if}
+          </div>
+          <CTButton color="primary" onclick={selectAll}>
+            Select All
+          </CTButton>
+          <CTButton onclick={cancel}>
+            Cancel
+          </CTButton>
         </div>
-        <div bind:this={solveContainer} class="grid grid-cols-3 gap-5 w-full">
-            {#each $scrambleData as solveData}
-                <CTSolveTime on:select={select} onClick={() => showDetail(solveData)} {solveData} {selectMode} />
-            {/each}
-        </div>
+      {:else}
+        <CTButton onclick={() => selectMode = true} color="primary">
+          Select
+        </CTButton>
+      {/if}
+    </div>
+    <div bind:this={solveContainer} class="grid grid-cols-3 gap-5 w-full">
+      {#each scrambleData.scrambles as solveData}
+        <CTSolveTime select={(data) => select(data)} onClick={() => showDetail(solveData)} {solveData} {selectMode} />
+      {/each}
+    </div>
 
-    {:else}
-        <p class="text-center whitespace-nowrap">
-            No solves on the board yet. Start now and track your progress!
-        </p>
-    {/if}
+  {:else}
+    <p class="text-center whitespace-nowrap">
+      No solves on the board yet. Start now and track your progress!
+    </p>
+  {/if}
 </div>

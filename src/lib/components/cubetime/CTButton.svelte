@@ -1,18 +1,36 @@
 <script lang="ts">
-    export let color: 'primary' | 'secondary' | 'white' | 'red' | 'green' = 'secondary'
-    export let size: 'small' | 'default' = 'default'
-    export let icon: string | undefined = undefined
-    export let disabled: boolean = false
+import type { Snippet } from 'svelte'
+import type { MouseEventHandler } from 'svelte/elements'
+
+interface Props {
+  color?: 'primary' | 'secondary' | 'white' | 'red' | 'green';
+  size?: 'small' | 'default';
+  icon?: string | undefined;
+  disabled?: boolean;
+  children?: Snippet
+  onclick?: MouseEventHandler<HTMLButtonElement>,
+}
+
+let {
+  color = 'secondary',
+  size = 'default',
+  icon = undefined,
+  disabled = false,
+  children,
+  onclick,
+}: Props = $props()
 </script>
 
-<button class:primary={color === 'primary'} class:secondary={color === 'secondary'} class:white={color === 'white'}
-        class:red={color === 'red'} class:!text-sm={size === 'small'} class:green={color === 'green'}
-        class="rounded-md font-medium transition-colors duration-300 ease-in-out px-1.5 py-0.5 flex justify-center items-center gap-1 outline-none"
-        on:click disabled={disabled}>
-    {#if icon}
-        <span class={`${icon} text-lg`} />
-    {/if}
-    <slot />
+<button
+  class:primary={color === 'primary'} class:secondary={color === 'secondary'} class:white={color === 'white'}
+  class:red={color === 'red'} class:!text-sm={size === 'small'} class:green={color === 'green'}
+  class="rounded-md font-medium transition-colors duration-300 ease-in-out px-1.5 py-0.5 flex justify-center items-center gap-1 outline-none"
+  {onclick} {disabled}
+>
+  {#if icon}
+    <span class={`${icon} text-lg`}></span>
+  {/if}
+  {@render children?.()}
 </button>
 
 <style lang="postcss">

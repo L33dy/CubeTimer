@@ -1,9 +1,13 @@
 <script lang="ts">
-    export let checked: boolean = false;
-    export let onCheck: (checked: boolean) => void;
+interface Props {
+  checked?: boolean;
+  onCheck: (checked: boolean) => void;
+}
+
+let { checked = $bindable(false), onCheck }: Props = $props()
 </script>
 
-<input bind:checked={checked} on:change={() => onCheck(checked)} type="checkbox" />
+<input bind:checked={checked} onchange={() => onCheck(checked)} type="checkbox" />
 
 <style lang="postcss">
     input {
