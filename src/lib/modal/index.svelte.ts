@@ -1,14 +1,17 @@
-import { writable } from 'svelte/store'
 import type { ConfirmModal } from '$lib/modal/types/confirm'
 
 export type Modal = (ConfirmModal)
 
-export const currentModal = writable<Modal | null>(null)
+export const currentModal = $state<{
+  value?: Modal
+}>({
+  value: undefined,
+})
 
 export function createModal(data: Modal) {
-  currentModal.set(data)
+  currentModal.value = data
 }
 
 export function closeCurrentModal() {
-  currentModal.set(null)
+  currentModal.value = undefined
 }

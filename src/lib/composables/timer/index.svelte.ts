@@ -75,12 +75,13 @@ export function toggleStart(e: KeyboardEvent) {
 }
 
 export function togglePrepare(e: KeyboardEvent) {
+  if (settings.value.timerSettings.timerMode === 'typing') return
+
   if (e.code === 'Space') {
     if (useInspection && timerState.inspection === InspectionState.NONE && timerState.timer === TimerState.IDLE) {
       startInspection()
     }
-
-    if ((!useInspection && timerState.timer === TimerState.IDLE) || useInspection && timerState.inspection === InspectionState.RUNNING) {
+    else if ((!useInspection && timerState.timer === TimerState.IDLE) || useInspection && timerState.inspection === InspectionState.RUNNING) {
       prepareTimer()
     }
 

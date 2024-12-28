@@ -72,6 +72,10 @@ function toggleOptions(): void {
 }
 </script>
 
+<svelte:head>
+  <title>CubeTimer | Solves</title>
+</svelte:head>
+
 <div class="flex flex-col justify-center items-center gap-10 w-[400px] mx-auto">
   {#if scrambleData.scrambles.length > 0}
     <div class="flex justify-end w-full">

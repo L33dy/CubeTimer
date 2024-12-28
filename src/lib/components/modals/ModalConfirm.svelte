@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { ConfirmModal } from '$lib/modal/types/confirm'
 import CTButton from '$lib/components/cubetime/CTButton.svelte'
-import { closeCurrentModal } from '$lib/modal'
+import { closeCurrentModal } from '$lib/modal/index.svelte'
 
 interface Props {
   modal: ConfirmModal;

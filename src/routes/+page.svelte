@@ -21,6 +21,12 @@ let timerSettings = $derived<TimerSettings>(settings.value.timerSettings)
 function keyDown(e: KeyboardEvent): void {
   if (e.code === 'Enter') {
     generateNewSequence()
+
+    time.value = {
+      total: 0,
+      seconds: 0,
+      milliseconds: 0,
+    }
   }
 }
 
@@ -44,6 +50,10 @@ $effect(() => {
   }
 })
 </script>
+
+<svelte:head>
+  <title>CubeTimer</title>
+</svelte:head>
 
 <svelte:body onkeydown={(e) => {keyDown(e); togglePrepare(e)}} onkeyup={toggleStart}/>
 
@@ -95,6 +105,6 @@ $effect(() => {
 
 <style lang="postcss">
     .timer-input {
-        @apply outline-none bg-transparent text-6xl text-center;
+        @apply outline-none bg-transparent text-6xl text-center font-bold;
     }
 </style>

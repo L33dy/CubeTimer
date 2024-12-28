@@ -2,12 +2,11 @@
 import '../main.css'
 import { onMount, type Snippet } from 'svelte'
 import Navbar from '$lib/components/NavBar.svelte'
-import { currentModal } from '$lib/modal'
+import { currentModal } from '$lib/modal/index.svelte'
 import { Toaster } from 'svelte-french-toast'
 import SolveTimeDetail from '$lib/components/solveDetail/SolveTimeDetail.svelte'
 import ModalMain from '$lib/components/modals/ModalMain.svelte'
 import { detailData, getData, getSettings, hideDetail, scrambleData, settings } from '$lib/composables'
-import CTLoading from '$lib/components/cubetime/CTLoading.svelte'
 
 interface Props {
   children?: Snippet
@@ -33,7 +32,7 @@ onMount(() => {
   <SolveTimeDetail solveData={detailData.value} hide={hideDetail} />
 {/if}
 
-{#if $currentModal}
+{#if currentModal.value}
   <ModalMain />
 {/if}
 

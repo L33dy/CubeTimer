@@ -23,9 +23,15 @@ import { version } from '$app/environment'
     <div class="flex flex-col gap-1.5">
       <small>Built with</small>
       <div class="flex gap-2">
-        <span class="i-[devicon--svelte] text-lg"></span>
-        <span class="i-[devicon--tailwindcss] text-lg"></span>
-        <span class="i-[devicon--typescript] text-lg"></span>
+        <a aria-label="Svelte" href="https://svelte.dev/" target="_blank">
+          <span class="i-[devicon--svelte] text-lg"></span>
+        </a>
+        <a aria-label="Tailwind CSS" href="https://tailwindcss.com" target="_blank">
+          <span class="i-[devicon--tailwindcss] text-lg"></span>
+        </a>
+        <a aria-label="Typescript" href="https://typescriptlang.org" target="_blank">
+          <span class="i-[devicon--typescript] text-lg"></span>
+        </a>
       </div>
     </div>
     <div class="flex place-self-end">
@@ -35,15 +41,15 @@ import { version } from '$app/environment'
 </div>
 
 <style lang="postcss">
-    a {
+    nav a {
         @apply flex justify-start items-center gap-3 w-full text-lg font-medium transition-opacity duration-300;
     }
 
-    a:not(.active) {
+    nav a:not(.active) {
         @apply opacity-50;
     }
 
-    a:not(.active):hover {
+    nav a:not(.active):hover {
         @apply opacity-65;
     }
 </style>

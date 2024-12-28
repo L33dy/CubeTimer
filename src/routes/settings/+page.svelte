@@ -7,7 +7,7 @@ import SettingsSubMenuDivider from '$lib/components/settings/SettingsSubMenuDivi
 import CTCounter from '$lib/components/cubetime/CTCounter.svelte'
 import CTSelect from '$lib/components/cubetime/CTSelect.svelte'
 import CTButton from '$lib/components/cubetime/CTButton.svelte'
-import { createModal } from '$lib/modal'
+import { createModal } from '$lib/modal/index.svelte'
 import { clamp, resetSettings, settings, type TimerSettings, updateSettingValue } from '$lib/composables'
 
 let timerSettings = $derived<TimerSettings>(settings.value.timerSettings)
@@ -21,6 +21,10 @@ function reset() {
   })
 }
 </script>
+
+<svelte:head>
+  <title>CubeTimer | Settings</title>
+</svelte:head>
 
 <div class="flex flex-col justify-center items-center gap-8">
   <SettingsMenu name="General" icon="i-[fa6-solid--gears]">

@@ -17,7 +17,7 @@ const config = {
     },
     adapter: adapter(),
     version: {
-      name: '0.6.0',
+      name: '0.6.1',
     },
   },
 }
