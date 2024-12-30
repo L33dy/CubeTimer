@@ -1,16 +1,13 @@
-import { Penalty, scrambleData } from '$lib/composables'
+import { getTimes, getValidSolves, type Solve } from '$lib/composables'
+
+export function getBestSingle(): Solve {
+  const solves = getValidSolves()
+
+  return solves.sort((a, b) => a.time - b.time)[0]
+}
 
 export function getMeanTime(): number | undefined {
-  const times = scrambleData.scrambles.filter(item => item.penalty !== Penalty.DNF)
-    .map(item => {
-      let time = item.time
-
-      if (item.penalty === Penalty.PLUSTWO) {
-        time += 2
-      }
-
-      return time
-    })
+  const times = getTimes()
 
   const sum = times.reduce((acc, time) => acc + time, 0)
 
@@ -20,16 +17,7 @@ export function getMeanTime(): number | undefined {
 }
 
 export function getAverage(num: number): number | undefined {
-  const times = scrambleData.scrambles.filter(item => item.penalty !== Penalty.DNF)
-    .map(item => {
-      let time = item.time
-
-      if (item.penalty === Penalty.PLUSTWO) {
-        time += 2
-      }
-
-      return time
-    })
+  const times = getTimes()
 
   if (times.length < num) return
 

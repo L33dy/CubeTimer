@@ -29,7 +29,7 @@ function updateCubeType() {
     </select>
   </div>
   {#if scrambleData.scrambles.length > 0}
-    <div class="grid grid-cols-3 max-h-[172px] gap-2 w-full">
+    <div class="grid grid-cols-3 max-h-[172px] gap-2 w-full overflow-y-auto">
       {#each scrambleData.scrambles as scramble (scramble.date)}
         <CTSolveTime solveData={scramble} />
       {/each}

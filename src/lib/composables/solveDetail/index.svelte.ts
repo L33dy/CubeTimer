@@ -4,7 +4,7 @@ let selectedDetail = $state<Solve>()
 
 export function getDetailData() {
   return {
-    get value() { return scrambleData.scrambles.find(item => item.date === selectedDetail?.date) },
+    get value() { return scrambleData.scrambles?.find(item => item.date === selectedDetail?.date) },
   }
 }
 

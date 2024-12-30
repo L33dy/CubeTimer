@@ -22,11 +22,26 @@ export interface Solve {
 }
 
 export const scrambleData = $state<{
-  scrambles: Solve[],
+  scrambles: Solve[] | null,
   sequence: string,
   puzzleType: PuzzleType,
 }>({
-  scrambles: [],
+  scrambles: null,
   sequence: '',
   puzzleType: '3x3',
 })
+
+export function getValidSolves(): Solve[] {
+  return scrambleData.scrambles?.filter(scramble => scramble.penalty !== Penalty.DNF) ?? []
+}
+
+export function getTimes(): number[] {
+  return scrambleData.scrambles?.filter(scramble => scramble.penalty !== Penalty.DNF)
+    .map(scramble => {
+      let time = scramble.time
+
+      if (scramble.penalty === Penalty.PLUSTWO) time += 2
+
+      return time
+    }) ?? []
+}
