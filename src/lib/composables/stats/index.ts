@@ -1,5 +1,11 @@
 import { getTimes, getValidSolves, type Solve } from '$lib/composables'
 
+export interface TimeDistribution {
+  start: number
+  end: number
+  count: number
+}
+
 export function getBestSingle(): Solve {
   const solves = getValidSolves()
 
@@ -38,4 +44,30 @@ export function isValidTime(input: string): boolean {
   const num = Number(input)
 
   return !isNaN(num) && /^[0-9]+(\.[0-9]+)?$/.test(input)
+}
+
+export function getTimeDistribution(): TimeDistribution[] {
+  const solves = getValidSolves()
+
+  const minTime = Math.min(...solves.map(solve => solve.time))
+  const maxTime = Math.max(...solves.map(solve => solve.time))
+
+  const step = (maxTime - minTime) / 7
+
+  const distribution: TimeDistribution[] = []
+
+  for (let i = 0; i < 7; i++) {
+    const rangeStart = minTime + i * step
+    const rangeEnd = i === 7 - 1 ? maxTime : rangeStart + step
+
+    const count = solves.filter(solve => solve.time >= rangeStart && solve.time <= rangeEnd).length
+
+    distribution.push({
+      start: rangeStart,
+      end: rangeEnd,
+      count,
+    })
+  }
+
+  return distribution
 }
