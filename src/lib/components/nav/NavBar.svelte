@@ -2,6 +2,13 @@
 import { version } from '$app/environment'
 import NavItem from '$lib/components/nav/NavItem.svelte'
 import CTLabel from '$lib/components/cubetime/CTLabel.svelte'
+import { createModal } from '$lib/modal/index.svelte'
+
+function openChangelog() {
+  createModal({
+    type: 'changelog',
+  })
+}
 </script>
 
 <div class="bg-white h-screen fixed top-0 w-[350px] px-6 py-5 flex flex-col shadow-sm">
