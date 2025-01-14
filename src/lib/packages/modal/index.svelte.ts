@@ -1,6 +1,6 @@
-import type { ConfirmModal, ChangelogModal } from './types'
+import type { ConfirmModal } from './types'
 
-export type Modal = (ConfirmModal | ChangelogModal)
+export type Modal = ConfirmModal
 
 export const currentModal = $state<{
   value?: Modal

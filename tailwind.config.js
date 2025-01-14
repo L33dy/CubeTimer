@@ -12,7 +12,10 @@ export default {
     'i-[mdi--stopwatch]',
     'i-[f7--hourglass-bottomhalf-fill]',
     'i-[f7--chart-pie-fill]',
-    'i-[mingcute--settings-3-fill]'
+    'i-[mingcute--settings-3-fill]',
+    'i-[ri--add-fill]',
+    'i-[ri--arrow-up-fill]',
+    'i-[ri--settings-fill]'
   ],
   theme: {
     extend: {

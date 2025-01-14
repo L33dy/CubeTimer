@@ -14,7 +14,7 @@ let { color = 'primary', children, onclick }: Props = $props()
 <button
   {onclick} disabled={!onclick}
   class:primary={color === 'primary'} class:secondary={color === 'secondary'}
-  class="transition-colors duration-300 rounded-md px-1.5 py-1 flex justify-center items-center text-xs  font-semibold"
+  class="transition-colors duration-300 rounded-md px-1.5 py-0.5 flex justify-center items-center text-sm font-bold"
 >
   {@render children?.()}
 </button>

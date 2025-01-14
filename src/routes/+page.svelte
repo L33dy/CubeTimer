@@ -1,9 +1,6 @@
 <script lang="ts">
 import { fade } from 'svelte/transition'
 import { scramble } from 'cube-scramble.js'
-import Session from '$lib/components/Session.svelte'
-import Stats from '$lib/components/Stats.svelte'
-import CTButton from '$lib/components/cubetime/CTButton.svelte'
 import {
   cancelInspection,
   InspectionState, inspectionTime,
@@ -14,7 +11,10 @@ import {
   type TimerSettings, TimerState, timerState,
   togglePrepare,
   toggleStart
-} from '$lib/composables'
+} from '$composables'
+import Session from '$components/Session.svelte'
+import Stats from '$components/Stats.svelte'
+import CTButton from '$components/cubetime/CTButton.svelte'
 
 let timerSettings = $derived<TimerSettings>(settings.value.timerSettings)
 

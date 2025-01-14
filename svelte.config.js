@@ -12,12 +12,13 @@ const config = {
     // If your environment is not supported, or you settled on a specific environment, switch out the adapter.
     // See https://kit.svelte.dev/docs/adapters for more information about adapters.
     alias: {
-      '$composables': 'src/composables',
-      '$components': 'src/components',
+      '$composables': 'src/lib/composables',
+      '$components': 'src/lib/components',
+      '$packages': 'src/lib/packages',
     },
     adapter: adapter(),
     version: {
-      name: '0.7.3',
+      name: '0.8.0',
     },
   },
 }

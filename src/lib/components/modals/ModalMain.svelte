@@ -1,8 +1,7 @@
 <script lang="ts">
-import { closeCurrentModal, currentModal } from '$lib/modal/index.svelte'
+import { closeCurrentModal, currentModal } from '$packages/modal/index.svelte'
 import { fade, scale } from 'svelte/transition'
 import ModalConfirm from '$lib/components/modals/ModalConfirm.svelte'
-import ModalChangelog from '$lib/components/modals/ModalChangelog.svelte'
 
 function cancelModal() {
   currentModal.value?.onCancel?.()
@@ -22,8 +21,5 @@ function cancelModal() {
 >
   {#if currentModal.value?.type === 'confirm'}
     <ModalConfirm modal={currentModal.value} />
-  {/if}
-  {#if currentModal.value?.type === 'changelog'}
-    <ModalChangelog />
   {/if}
 </div>

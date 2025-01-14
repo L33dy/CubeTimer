@@ -2,19 +2,13 @@
 import { version } from '$app/environment'
 import NavItem from '$lib/components/nav/NavItem.svelte'
 import CTLabel from '$lib/components/cubetime/CTLabel.svelte'
-import { createModal } from '$lib/modal/index.svelte'
-
-function openChangelog() {
-  createModal({
-    type: 'changelog',
-  })
-}
+import { openChangelog } from '$packages/changelog/index.svelte'
 </script>
 
 <div class="bg-white h-screen fixed top-0 w-[350px] px-6 py-5 flex flex-col shadow-sm">
   <div class="flex items-center gap-4">
     <h1 class="text-3xl font-semibold bg-gradient-to-r from-violet-500 to-violet-300 text-transparent bg-clip-text">CubeTimer.</h1>
-    <CTLabel>
+    <CTLabel onclick={openChangelog}>
       v{version}
     </CTLabel>
   </div>

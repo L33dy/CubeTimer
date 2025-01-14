@@ -7,7 +7,7 @@ import SettingsSubMenuDivider from '$lib/components/settings/SettingsSubMenuDivi
 import CTCounter from '$lib/components/cubetime/CTCounter.svelte'
 import CTSelect from '$lib/components/cubetime/CTSelect.svelte'
 import CTButton from '$lib/components/cubetime/CTButton.svelte'
-import { createModal } from '$lib/modal/index.svelte'
+import { createModal } from '$lib/packages/modal/index.svelte'
 import { clamp, resetSettings, settings, type TimerSettings, updateSettingValue } from '$lib/composables'
 
 let timerSettings = $derived<TimerSettings>(settings.value.timerSettings)
