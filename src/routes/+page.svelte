@@ -65,7 +65,7 @@ $effect(() => {
     <p
       in:fade={{ duration: 450 }}
       class:opacity-0={timerState.timer !== TimerState.IDLE || timerState.inspection !== InspectionState.NONE}
-      class="text-4xl font-medium transition-opacity duration-150 text-center cursor-default"
+      class="text-4xl font-medium transition-opacity duration-150 text-center cursor-default font-mono"
     >
       {scrambleData.sequence}
     </p>
@@ -79,7 +79,7 @@ $effect(() => {
         class:text-black={timerState.timer === TimerState.IDLE || timerState.timer === TimerState.RUNNING}
         class:text-red-500={timerState.timer === TimerState.PREPARING}
         class:text-green-500={timerState.timer === TimerState.PREPARED}
-        class="text-6xl font-bold transition-all duration-300 ease-in-out"
+        class="text-6xl font-bold transition-all duration-300 ease-in-out font-mono"
         class:scale-150={timerState.timer === TimerState.RUNNING}
       >
         {`${time.value.seconds}.${time.value.milliseconds.toString().padStart(3, '0')}`}

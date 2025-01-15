@@ -46,12 +46,12 @@ function closeDetail() {
 >
   <div class="flex items-center justify-between border-b-1 border-gray-200">
     {#if penalty === Penalty.NONE}
-      <span class="font-semibold text-2xl">
+      <span class="font-semibold text-2xl font-mono">
         {time.toFixed(3)}
       </span>
     {:else if penalty === Penalty.PLUSTWO}
       <div class="flex items-center gap-2">
-        <span class="font-semibold text-2xl">
+        <span class="font-semibold text-2xl font-mono">
           {(time + 2).toFixed(3)}
         </span>
         <span class="text-gray-600 text-sm">
@@ -59,7 +59,7 @@ function closeDetail() {
         </span>
       </div>
     {:else if penalty === Penalty.DNF}
-      <span class="font-semibold text-2xl">
+      <span class="font-semibold text-2xl font-mono">
         DNF
       </span>
     {/if}
@@ -73,7 +73,7 @@ function closeDetail() {
     </p>
   </div>
   <div class="flex flex-col justify-center items-center gap-8 pt-8">
-    <p class="text-center font-medium text-lg">
+    <p class="text-center font-medium text-lg font-mono">
       {scramble}
     </p>
     <ScrambleDisplay {puzzleType} {scramble}/>

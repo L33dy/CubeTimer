@@ -74,125 +74,109 @@ onMount(() => {
 
 <div class="flex flex-col gap-4 max-w-xl mx-auto w-full">
   <div class="flex gap-4">
-    <StatsItem class="w-1/2">
-      <div class="flex flex-col gap-2">
-        <span class="uppercase text-sm text-gray-600 font-medium">
-          Current Stats
-        </span>
-        <div class="flex flex-col">
-          <span class="text-sm font-medium text-gray-600">
-            AO5
-          </span>
-          <span class="font-bold">
-            { ao5 ? ao5 : '-' }
-          </span>
-        </div>
-        <div class="flex flex-col">
-          <span class="text-sm font-medium text-gray-600">
-            AO12
-          </span>
-          <span class="font-bold">
-            { ao12 ? ao12 : '-' }
-          </span>
-        </div>
-        <div class="flex flex-col">
-          <span class="text-sm font-medium text-gray-600">
-            AO100
-          </span>
-          <span class="font-bold">
-            { ao100 ? ao12 : '-' }
-          </span>
-        </div>
-      </div>
+    <StatsItem
+      class="!w-1/2"
+      items={[
+        {
+          title: 'AO5',
+          value: ao5,
+        },
+        {
+          title: 'AO12',
+          value: ao12,
+        },
+        {
+          title: 'AO100',
+          value: ao100,
+        }
+      ]}
+    >
+      Current Stats
     </StatsItem>
     <div class="flex flex-col gap-4 basis-1/2">
-      <StatsItem>
-        <div class="flex flex-col gap-2">
-          <span class="uppercase text-sm text-gray-600 font-medium">
-            Solve Count
-          </span>
-          <span class="font-bold text-3xl">
-            {solvesCount}
-          </span>
-        </div>
+      <StatsItem
+        color="gray"
+        items={[
+          {
+            value: solvesCount,
+          }
+        ]}
+      >
+        Solve Count
       </StatsItem>
-      <StatsItem>
-        <div class="flex flex-col gap-2">
-          <span class="uppercase text-sm text-gray-600 font-medium">
-            Session Mean
-          </span>
-          <span class="font-bold text-3xl">
-            {sessionMean ? sessionMean : '-'}
-          </span>
-        </div>
+      <StatsItem
+        color="gray"
+        items={[
+          {
+            value: sessionMean,
+          }
+        ]}
+      >
+        Session Mean
       </StatsItem>
     </div>
   </div>
   <div class="flex gap-4">
     <div class="flex flex-col gap-4 w-1/2">
       <button class="w-full h-full" onclick={() => showDetail(bestSingle)}>
-        <StatsItem color="secondary">
-          <div class="flex flex-col gap-2">
-            <span class="uppercase text-sm font-medium">
-              Best Single
-            </span>
-            <span class="font-bold text-3xl w-fit">
-              {bestSingle?.time ? bestSingle?.time : '-'}
-            </span>
-          </div>
+        <StatsItem
+          color="violet"
+          items={[
+            {
+              value: bestSingle.time,
+            }
+          ]}
+        >
+          Best Single
         </StatsItem>
       </button>
-      <StatsItem>
-        <div class="flex flex-col gap-2">
-          <div class="flex flex-col">
-            <span class="text-sm font-medium text-gray-600">
-              BEST AO12
-            </span>
-            <span class="font-bold">
-              { ao12 ? ao12 : '-' }
-            </span>
-          </div>
-          <div class="flex flex-col">
-            <span class="text-sm font-medium text-gray-600">
-              BEST AO100
-            </span>
-            <span class="font-bold">
-              { ao100 ? ao12 : '-' }
-            </span>
-          </div>
-        </div>
+      <StatsItem
+        items={[
+          {
+            title: 'AO12',
+            value: ao12,
+          },
+          {
+            title: 'AO100',
+            value: ao100,
+          }
+        ]}
+      >
+        Best Stats
       </StatsItem>
     </div>
     <div class="flex w-1/2">
       <StatsItem>
-        <div class="flex flex-col">
-          <span class="text-sm font-medium text-gray-600">
-            BEST AO5
-          </span>
-        </div>
+        Best Ao5
       </StatsItem>
     </div>
   </div>
-  <StatsItem>
-    {#if solvesCount >= 2}
-      <canvas id="timeTrend" class="w-full"></canvas>
+  <StatsItem noRenderItems>
+    Time Trend
+    {#snippet content()}
+      {#if solvesCount >= 2}
+        <canvas id="timeTrend" class="w-full"></canvas>
 
-    {:else}
+      {:else}
 
-      <div class="flex justify-center items-center w-full h-full min-h-40">
-        <p>Not enough solves to show time trend.</p>
-      </div>
-    {/if}
+        <div class="flex justify-center items-center w-full h-full min-h-40">
+          <p>Not enough solves to show time trend.</p>
+        </div>
+      {/if}
+    {/snippet}
   </StatsItem>
-  <StatsItem>
-    {#if solvesCount >= 2}
-      <canvas id="timeDistribution" class="w-full"></canvas>
+  <StatsItem noRenderItems>
+    Time Distribution
+    {#snippet content()}
+      {#if solvesCount >= 2}
+        <canvas id="timeDistribution" class="w-full"></canvas>
 
-    {:else}
+      {:else}
 
-      <div class="flex justify-center items-center w-full h-full min-h-40">
-        <p>Not enough solves to show time trend.</p>
-      </div>
-    {/if}
+        <div class="flex justify-center items-center w-full h-full min-h-40">
+          <p>Not enough solves to show time trend.</p>
+        </div>
+      {/if}
+    {/snippet}
   </StatsItem>
 </div>

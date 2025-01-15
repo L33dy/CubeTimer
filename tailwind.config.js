@@ -25,6 +25,10 @@ export default {
       colors: {
         primary: colors.violet,
       },
+      fontFamily: {
+        'sans': ['Open Sans', 'serif'],
+        'mono': ['Roboto Mono', 'serif'],
+      },
     },
   },
   plugins: [

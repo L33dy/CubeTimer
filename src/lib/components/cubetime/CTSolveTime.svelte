@@ -45,7 +45,7 @@ function selectSolve() {
 
 <style lang="postcss">
     :global([scrambleData-selected]) {
-        @apply bg-gray-200;
+        @apply !bg-gray-200;
     }
 
     #checkmark {
