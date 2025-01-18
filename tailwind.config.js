@@ -24,10 +24,18 @@ export default {
       },
       colors: {
         primary: colors.violet,
+        'background': 'var(--background)',
+        'text': 'var(--text)',
+        'main': 'var(--main)',
       },
       fontFamily: {
         'sans': ['Open Sans', 'serif'],
         'mono': ['Roboto Mono', 'serif'],
+      },
+      maxWidth: {
+        '8xl': '88rem',
+        '9xl': '96rem',
+        '10xl': '104rem',
       },
     },
   },

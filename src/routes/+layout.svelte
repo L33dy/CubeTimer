@@ -25,9 +25,8 @@ onMount(() => {
 
 
 {#if scrambleData.scrambles}
-  <main class="flex w-full h-full">
-    <NavBar />
-    <div class="ml-[350px] py-24 px-10 min-h-screen w-full relative">
+  <main class="w-full h-full">
+    <div class="py-24 px-10 min-h-screen w-full max-w-10xl mx-auto relative">
       {@render children?.()}
     </div>
   </main>
