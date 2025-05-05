@@ -2,6 +2,7 @@ import toast from 'svelte-french-toast'
 
 export interface Settings {
   timerSettings: TimerSettings
+  appearanceSettings: AppearanceSettings
 }
 
 export interface TimerSettings {
@@ -13,6 +14,20 @@ export interface TimerSettings {
   timerUpdate: 0 | 1 | 2 | 3
 }
 
+export interface AppearanceSettings {
+  theme: string
+}
+
+export interface Theme {
+  name: string
+  background: string
+  backgroundAlt: string
+  text: string
+  textAlt: string
+  main: string
+  error: string
+}
+
 const defaultSettings: Settings = {
   timerSettings: {
     useInspection: false,
@@ -21,6 +36,9 @@ const defaultSettings: Settings = {
     holdTime: 350,
     timerMode: 'timer',
     timerUpdate: 3,
+  },
+  appearanceSettings: {
+    theme: 'blue-night',
   },
 }
 
@@ -58,6 +76,26 @@ export function resetSettings(): void {
   getSettings()
 
   toast.success('Settings have been reset.')
+}
+
+export function loadTheme(name: string): void {
+  const existingLink = document.getElementById('theme') as HTMLLinkElement
+
+  if (existingLink) {
+    existingLink.href = `/themes/${name}.css`
+  }
+  else {
+    const link = document.createElement('link')
+    link.id = 'theme'
+    link.href = `/themes/${name}.css`
+    link.type = 'text/css'
+    link.rel = 'stylesheet'
+    link.media = 'screen,print'
+
+    document.getElementsByTagName('head')[0].appendChild(link)
+  }
+
+  updateSettingValue('appearanceSettings', 'theme', name)
 }
 
 function loadDefaultSettings(): string {

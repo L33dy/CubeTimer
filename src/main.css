@@ -30,9 +30,3 @@
         -moz-appearance: textfield;
     }
 }
-
-:root {
-    --background: #27272a;
-    --text: #fafafa;
-    --main: #6366f1;
-}

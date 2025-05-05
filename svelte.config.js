@@ -18,7 +18,7 @@ const config = {
     },
     adapter: adapter(),
     version: {
-      name: '0.8.1',
+      name: '1.0.0',
     },
   },
 }

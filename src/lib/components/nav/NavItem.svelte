@@ -12,22 +12,24 @@ let { icon, children, href }: Props = $props()
 </script>
 
 <a {href} class:active={page.url.pathname === href}>
-  <span class="{icon} text-2xl"></span>
-  <span>
-    {@render children?.()}
-  </span>
+  <span class="{icon} text-xl"></span>
+  {#if children}
+    <span>
+      {@render children()}
+    </span>
+  {/if}
 </a>
 
 <style lang="postcss">
     a {
-        @apply flex justify-start items-center gap-3 w-full text-lg font-medium transition-opacity duration-300;
+        @apply flex justify-start items-center gap-3 w-fit text-lg font-medium transition-all duration-300;
     }
 
     a:not(.active) {
-        @apply opacity-50;
+        @apply text-text-alt;
     }
 
     a:not(.active):hover {
-        @apply opacity-65;
+        @apply text-text;
     }
 </style>

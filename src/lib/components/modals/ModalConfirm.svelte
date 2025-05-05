@@ -3,11 +3,7 @@ import type { ConfirmModal } from '$packages/modal/types'
 import CTButton from '$lib/components/cubetime/CTButton.svelte'
 import { closeCurrentModal } from '$packages/modal/index.svelte'
 
-interface Props {
-  modal: ConfirmModal;
-}
-
-let { modal }: Props = $props()
+let modal: ConfirmModal = $props()
 
 function confirm() {
   modal?.onConfirm?.()
@@ -27,12 +23,12 @@ function cancel() {
     <h2 class="font-medium">
       {modal.title}
     </h2>
-    <p class="text-sm text-gray-600">
+    <p class="text-sm text-text-alt">
       {modal.description}
     </p>
   </div>
   <div class="flex justify-end items-center gap-2">
-    <CTButton onclick={confirm} color="green">
+    <CTButton onclick={confirm}>
       Confirm
     </CTButton>
     <CTButton onclick={cancel} color="red">

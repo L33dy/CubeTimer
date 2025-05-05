@@ -11,33 +11,33 @@
 		"prepare": "npx husky || exit 0"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^19.6.1",
-		"@commitlint/config-conventional": "^19.6.0",
-		"@egoist/tailwindcss-icons": "^1.8.2",
-		"@iconify/json": "^2.2.289",
-		"@stylistic/eslint-plugin": "^2.12.1",
+		"@commitlint/cli": "^19.8.0",
+		"@commitlint/config-conventional": "^19.8.0",
+		"@egoist/tailwindcss-icons": "^1.9.0",
+		"@iconify/json": "^2.2.335",
+		"@stylistic/eslint-plugin": "^2.13.0",
 		"@sveltejs/adapter-auto": "^3.3.1",
-		"@sveltejs/kit": "^2.15.1",
+		"@sveltejs/kit": "^2.20.8",
 		"@sveltejs/vite-plugin-svelte": "^4.0.4",
-		"autoprefixer": "^10.4.20",
-		"eslint": "^9.17.0",
+		"autoprefixer": "^10.4.21",
+		"eslint": "^9.26.0",
 		"eslint-plugin-svelte": "^2.46.1",
-		"globals": "^15.14.0",
+		"globals": "^15.15.0",
 		"husky": "^9.1.7",
-		"postcss": "^8.4.49",
-		"svelte": "^5.16.0",
-		"svelte-check": "^4.1.1",
+		"postcss": "^8.5.3",
+		"svelte": "^5.28.2",
+		"svelte-check": "^4.1.7",
 		"tailwindcss": "^3.4.17",
-		"typescript": "^5.7.2",
-		"typescript-eslint": "^8.18.2",
-		"vite": "^5.4.11"
+		"typescript": "^5.8.3",
+		"typescript-eslint": "^8.31.1",
+		"vite": "^5.4.19"
 	},
 	"type": "module",
 	"dependencies": {
-		"chart.js": "^4.4.7",
+		"chart.js": "^4.4.9",
 		"cube-scramble.js": "^1.0.18",
 		"scramble-display": "^0.5.5",
 		"svelte-french-toast": "^1.2.0"
 	},
-	"packageManager": "pnpm@10.0.0-rc.0+sha256.57703626082eb6cde4a0eddd7a406172265c8509b6442396dbcc513eef3d0841"
+	"packageManager": "pnpm@10.10.0+sha512.d615db246fe70f25dcfea6d8d73dee782ce23e2245e3c4f6f888249fb568149318637dca73c2c5c8ef2a4ca0d5657fb9567188bfab47f566d1ee6ce987815c39"
 }

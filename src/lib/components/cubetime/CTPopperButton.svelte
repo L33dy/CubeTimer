@@ -45,7 +45,7 @@ function handleClick(e: MouseEvent) {
   class:red={color === 'red'}
   class:grey={color === 'grey'}
   class:!px-1.5={dropdown}
-  class="flex items-center justify-between hover:bg-gray-100 transition-colors duration-300 ease-in-out py-1.5 px-2.5 w-full"
+  class="flex items-center justify-between hover:bg-text transition-colors duration-300 ease-in-out py-1.5 px-2.5 w-full rounded-md"
 >
   <span class:font-medium={dropdown && optionsVisible} class="flex items-center gap-1.5">
     {#if dropdown}
@@ -63,7 +63,7 @@ function handleClick(e: MouseEvent) {
     {#each options as o}
       <button
         onclick={o.onClick}
-        class="flex items-center justify-between hover:bg-gray-100 transition-colors duration-300 ease-in-out py-1.5 pl-7 pr-1.5 border-t-1 border-gray-200"
+        class="flex items-center justify-between hover:bg-text hover:text-background-alt transition-colors duration-300 ease-in-out py-1.5 pl-7 pr-1.5 border-t-1 border-t-background"
       >
         {o.name}
         {#if o.icon}
@@ -76,10 +76,10 @@ function handleClick(e: MouseEvent) {
 
 <style lang="postcss">
     .red {
-        @apply text-red-500;
+        @apply !text-error;
     }
 
     .grey {
-        @apply text-gray-800;
+        @apply text-text hover:text-background-alt;
     }
 </style>

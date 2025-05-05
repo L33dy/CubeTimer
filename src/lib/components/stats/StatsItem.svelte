@@ -7,7 +7,7 @@ interface Item {
 }
 
 interface Props {
-  color?: 'white' | 'gray' | 'violet'
+  color?: 'primary' | 'secondary' | 'main'
   children?: Snippet
   content?: Snippet
   class?: string
@@ -15,17 +15,18 @@ interface Props {
   noRenderItems?: boolean
 }
 
-let { color = 'white', children, content, class: klass, items = [], noRenderItems = false }: Props = $props()
+let { color = 'primary', children, content, class: klass, items = [], noRenderItems = false }: Props = $props()
 </script>
 
 <div
-  class:white={color === 'white'} class:violet={color === 'violet'} class:gray={color === 'gray'}
+  class:primary="{color === 'primary'}" class:main="{color === 'main'}" class:secondary="{color === 'secondary'}"
   class="rounded-xl p-3 w-full h-full flex {klass}"
 >
   <div class="flex flex-col gap-1 w-full">
     <span
-      class:text-white={color === 'violet'} class:!font-medium={color === 'violet'}
-      class="uppercase text-sm text-gray-500 font-semibold text-left"
+      class:text-text={color === 'secondary'}
+      class:text-background={color === 'primary'}
+      class="uppercase text-sm font-semibold text-left"
     >
       {@render children?.()}
     </span>
@@ -35,7 +36,7 @@ let { color = 'white', children, content, class: klass, items = [], noRenderItem
           {#each items as item}
             <div class="flex flex-col">
               {#if item?.title}
-                <span class="text-sm font-semibold text-gray-500">
+                <span class="text-sm text-background/70 font-semibold">
                   {item.title}
                 </span>
               {/if}
@@ -47,7 +48,7 @@ let { color = 'white', children, content, class: klass, items = [], noRenderItem
         {:else}
           <div class="flex flex-col">
             {#if items[0]?.title}
-              <span class="text-sm font-medium text-gray-500">
+              <span class="text-sm font-medium text-background/70">
                 {items[0].title}
               </span>
             {/if}
@@ -65,15 +66,15 @@ let { color = 'white', children, content, class: klass, items = [], noRenderItem
 </div>
 
 <style lang="postcss">
-  .white {
-    @apply bg-white text-black;
+  .primary {
+    @apply bg-text-alt text-text;
   }
 
-  .violet {
-    @apply bg-gradient-to-r from-violet-400/70 to-violet-500 text-white;
+  .main {
+    @apply bg-gradient-to-r from-main/70 to-main text-white;
   }
 
-  .gray {
-      @apply bg-gray-200/50;
+  .secondary {
+      @apply bg-background-alt;
   }
 </style>
