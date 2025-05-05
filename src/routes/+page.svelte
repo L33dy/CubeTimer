@@ -2,6 +2,7 @@
 import { fade } from 'svelte/transition'
 import { scramble } from 'cube-scramble.js'
 import {
+  info,
   InspectionState,
   scrambleData,
   time,
@@ -26,7 +27,13 @@ function keyDown(e: KeyboardEvent): void {
 }
 
 function generateNewSequence(): void {
-  scrambleData.sequence = scramble(scrambleData.puzzleType).join(' ')
+  const sequence = scramble(scrambleData.puzzleType).join(' ')
+
+  scrambleData.sequence = sequence
+  info('Generating new sequence', {
+    sequence,
+    puzzleType: scrambleData.puzzleType,
+  })
 }
 
 $effect(() => {

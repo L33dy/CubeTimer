@@ -34,5 +34,32 @@
     "textAlt": "#a0a7cc",
     "main": "#00ffaa",
     "error": "#ff3377"
+  },
+  {
+    "name": "peach-delight",
+    "background": "#fff5f0",
+    "backgroundAlt": "#ffede5",
+    "text": "#4d3428",
+    "textAlt": "#7d6354",
+    "main": "#ff7e45",
+    "error": "#e53935"
+  },
+  {
+    "name": "sakura-bloom",
+    "background": "#fef6f8",
+    "backgroundAlt": "#fae7ed",
+    "text": "#5d4a4c",
+    "textAlt": "#8c7476",
+    "main": "#f1768a",
+    "error": "#e7435e"
+  },
+  {
+    "name": "midnight-ocean",
+    "background": "#0f1726",
+    "backgroundAlt": "#1a2639",
+    "text": "#e6eeff",
+    "textAlt": "#a2b6d7",
+    "main": "#4d9de0",
+    "error": "#ff5d7a"
   }
 ]
