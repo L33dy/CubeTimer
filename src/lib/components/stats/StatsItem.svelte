@@ -71,7 +71,7 @@ let { color = 'primary', children, content, class: klass, items = [], noRenderIt
   }
 
   .main {
-    @apply bg-gradient-to-r from-main/70 to-main text-white;
+    @apply bg-gradient-to-r from-main/55 to-main text-white;
   }
 
   .secondary {

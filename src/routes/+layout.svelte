@@ -66,6 +66,6 @@ onMount(() => {
 
 <Toaster
   toastOptions={{
-    className: '!bg-text-alt !text-text',
+    className: '!bg-background !text-text',
   }}
 />

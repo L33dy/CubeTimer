@@ -39,7 +39,7 @@ const defaultSettings: Settings = {
     timerUpdate: 3,
   },
   appearanceSettings: {
-    theme: 'mocha-night',
+    theme: 'midnight-ocean',
   },
 }
 

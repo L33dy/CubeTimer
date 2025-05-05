@@ -6,7 +6,7 @@ export interface TimeDistribution {
   count: number
 }
 
-export function getBestSingle(): Solve {
+export function getBestSingle(): Solve | undefined {
   const solves = getValidSolves()
 
   return solves.sort((a, b) => a.time - b.time)[0]

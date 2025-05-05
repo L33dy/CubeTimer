@@ -1,16 +1,19 @@
 <script lang="ts">
-  import {
-    getAverage,
-    getBestSingle, getCurrentThemeName,
-    getMeanTime,
-    getTimeDistribution,
-    getTimes,
-    scrambleData,
-    showDetail
-  } from '$lib/composables'
+import {
+  getAverage,
+  getBestSingle,
+  getMeanTime,
+  getTimeDistribution,
+  getTimes,
+  scrambleData,
+  showDetail
+} from '$lib/composables'
 import { Chart } from 'chart.js/auto'
-import { onMount } from 'svelte'
+import { onMount, onDestroy } from 'svelte'
 import StatsItem from '$lib/components/stats/StatsItem.svelte'
+
+let trendChart = $state<Chart>()
+let distributionChart = $state<Chart>()
 
 let times = $derived(getTimes())
 
@@ -30,10 +33,7 @@ function initCharts() {
   const timeTrend = document.getElementById('timeTrend') as HTMLCanvasElement
   const timeDistribution = document.getElementById('timeDistribution') as HTMLCanvasElement
 
-  const style = getComputedStyle(document.documentElement)
-  let mainColor = style.getPropertyValue('--main')
-
-  new Chart(timeTrend, {
+  trendChart = new Chart(timeTrend, {
     type: 'line',
     data: {
       labels: scrambleData.scrambles?.map((_, index) => index + 1),
@@ -43,14 +43,12 @@ function initCharts() {
           label: 'Time Trend',
           cubicInterpolationMode: 'monotone',
           fill: true,
-          borderColor: `${mainColor}`,
-          backgroundColor: `${mainColor}B3`,
         }
       ],
     },
   })
 
-  new Chart(timeDistribution, {
+  distributionChart = new Chart(timeDistribution, {
     type: 'bar',
     data: {
       labels: distribution.map(d => `${d.start.toFixed(1)}+`),
@@ -58,8 +56,6 @@ function initCharts() {
         {
           data: distribution.map(d => d.count),
           label: 'Time Distribution',
-          borderColor: `${mainColor}`,
-          backgroundColor: `${mainColor}B3`,
         }
       ],
     },
@@ -67,7 +63,24 @@ function initCharts() {
 }
 
 onMount(() => {
-  initCharts()
+  if (solvesCount >= 2) {
+    setTimeout(() => {
+      const style = getComputedStyle(document.documentElement)
+      let mainColor = style.getPropertyValue('--main')
+      let textColor = style.getPropertyValue('--text')
+
+      Chart.defaults.color = textColor
+      Chart.defaults.backgroundColor = `${mainColor}CC`
+      Chart.defaults.borderColor = mainColor
+
+      initCharts()
+    }, 100)
+  }
+})
+
+onDestroy(() => {
+  trendChart?.destroy()
+  distributionChart?.destroy()
 })
 </script>
 
@@ -121,12 +134,15 @@ onMount(() => {
   </div>
   <div class="flex gap-4">
     <div class="flex flex-col gap-4 w-1/2">
-      <button class="w-full h-full" onclick={() => showDetail(bestSingle)}>
+      <button
+        class="w-full h-full" disabled={bestSingle === undefined}
+        onclick={() => showDetail(bestSingle)}
+      >
         <StatsItem
           color="main"
           items={[
             {
-              value: bestSingle.time,
+              value: bestSingle?.time,
             }
           ]}
         >
@@ -163,7 +179,7 @@ onMount(() => {
       {:else}
 
         <div class="flex justify-center items-center w-full h-full min-h-40">
-          <p>Not enough solves to show time trend.</p>
+          <p class="text-background-alt">Not enough solves to show time trend.</p>
         </div>
       {/if}
     {/snippet}
@@ -177,7 +193,7 @@ onMount(() => {
       {:else}
 
         <div class="flex justify-center items-center w-full h-full min-h-40">
-          <p>Not enough solves to show time trend.</p>
+          <p class="text-background-alt">Not enough solves to show time trend.</p>
         </div>
       {/if}
     {/snippet}

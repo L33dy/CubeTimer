@@ -10,7 +10,9 @@ export function getDetailData() {
 
 export const detailData = getDetailData()
 
-export function showDetail(data: Solve) {
+export function showDetail(data: Solve | undefined) {
+  if (data === undefined) return
+
   selectedDetail = data
 }
 
