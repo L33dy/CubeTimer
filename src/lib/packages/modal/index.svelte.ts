@@ -1,6 +1,8 @@
-import type { ConfirmModal } from './types'
+import type { ConfirmModal, ThemeModal } from './types'
 
-export type Modal = ConfirmModal
+export type Modal = (ConfirmModal | ThemeModal) & {
+  noPadding?: boolean
+}
 
 export const currentModal = $state<{
   value?: Modal

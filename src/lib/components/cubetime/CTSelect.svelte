@@ -21,6 +21,6 @@ let select = $state<HTMLSelectElement>()
 
 <style lang="postcss">
     select {
-        @apply outline-none cursor-pointer text-primary-500;
+        @apply outline-none cursor-pointer text-main bg-background rounded-md;
     }
 </style>

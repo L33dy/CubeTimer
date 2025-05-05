@@ -1,1 +1,1 @@
-<div class="w-full h-0.5 bg-gray-200"></div>
+<div class="w-full h-0.5 bg-text"></div>

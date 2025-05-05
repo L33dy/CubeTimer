@@ -1,13 +1,13 @@
 <script lang="ts">
-import {
-  getAverage,
-  getBestSingle,
-  getMeanTime,
-  getTimeDistribution,
-  getTimes,
-  scrambleData,
-  showDetail
-} from '$lib/composables'
+  import {
+    getAverage,
+    getBestSingle, getCurrentThemeName,
+    getMeanTime,
+    getTimeDistribution,
+    getTimes,
+    scrambleData,
+    showDetail
+  } from '$lib/composables'
 import { Chart } from 'chart.js/auto'
 import { onMount } from 'svelte'
 import StatsItem from '$lib/components/stats/StatsItem.svelte'
@@ -30,6 +30,9 @@ function initCharts() {
   const timeTrend = document.getElementById('timeTrend') as HTMLCanvasElement
   const timeDistribution = document.getElementById('timeDistribution') as HTMLCanvasElement
 
+  const style = getComputedStyle(document.documentElement)
+  let mainColor = style.getPropertyValue('--main')
+
   new Chart(timeTrend, {
     type: 'line',
     data: {
@@ -40,8 +43,8 @@ function initCharts() {
           label: 'Time Trend',
           cubicInterpolationMode: 'monotone',
           fill: true,
-          borderColor: '#8b5cf6',
-          backgroundColor: '#c4b5fd',
+          borderColor: `${mainColor}`,
+          backgroundColor: `${mainColor}B3`,
         }
       ],
     },
@@ -55,8 +58,8 @@ function initCharts() {
         {
           data: distribution.map(d => d.count),
           label: 'Time Distribution',
-          borderColor: '#8b5cf6',
-          backgroundColor: '#c4b5fd',
+          borderColor: `${mainColor}`,
+          backgroundColor: `${mainColor}B3`,
         }
       ],
     },
@@ -95,7 +98,7 @@ onMount(() => {
     </StatsItem>
     <div class="flex flex-col gap-4 basis-1/2">
       <StatsItem
-        color="gray"
+        color="secondary"
         items={[
           {
             value: solvesCount,
@@ -105,7 +108,7 @@ onMount(() => {
         Solve Count
       </StatsItem>
       <StatsItem
-        color="gray"
+        color="secondary"
         items={[
           {
             value: sessionMean,
@@ -120,7 +123,7 @@ onMount(() => {
     <div class="flex flex-col gap-4 w-1/2">
       <button class="w-full h-full" onclick={() => showDetail(bestSingle)}>
         <StatsItem
-          color="violet"
+          color="main"
           items={[
             {
               value: bestSingle.time,

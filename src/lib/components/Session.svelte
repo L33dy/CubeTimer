@@ -9,11 +9,11 @@ function updateCubeType() {
 }
 </script>
 
-<div class="absolute bottom-10 left-10 bg-gray-50 shadow-md flex flex-col justify-center items-start gap-7 px-3 py-2.5 rounded-md w-96 z-50">
+<div class="absolute bottom-10 left-10 bg-background shadow-md flex flex-col justify-center items-start gap-7 px-3 py-2.5 rounded-md w-96 z-50">
   <div class="flex justify-between items-center gap-4 w-full relative">
     <h2 class="font-semibold">Session 1</h2>
     <select
-      bind:value={typeValue} class="text-violet-600 outline-none cursor-pointer bg-transparent text-end font-medium"
+      bind:value={typeValue} class="text-main outline-none cursor-pointer bg-transparent text-end font-medium"
       onchange={updateCubeType}
     >
       <option value="3x3">3x3</option>

@@ -11,7 +11,7 @@ let { checked = $bindable(false), onCheck }: Props = $props()
 
 <style lang="postcss">
     input {
-        @apply appearance-none cursor-pointer relative w-14 h-7 rounded-full outline-none bg-gray-300 hover:bg-gray-400 transition-colors duration-300 ease-in-out;
+        @apply appearance-none cursor-pointer relative w-14 h-7 rounded-full outline-none bg-text hover:bg-text/75 transition-colors duration-300 ease-in-out;
     }
 
     input::after {
@@ -19,7 +19,7 @@ let { checked = $bindable(false), onCheck }: Props = $props()
     }
 
     input:checked {
-        @apply bg-primary-500 hover:bg-primary-600;
+        @apply bg-main hover:bg-main/75;
     }
 
     input:checked::after {

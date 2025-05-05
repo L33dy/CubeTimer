@@ -77,7 +77,7 @@ function toggleOptions(): void {
 </svelte:head>
 
 <div class="flex flex-col justify-center items-center gap-10 w-[400px] mx-auto">
-  {#if scrambleData.scrambles.length > 0}
+  {#if scrambleData.scrambles && scrambleData.scrambles.length > 0}
     <div class="flex justify-end w-full">
       {#if selectMode}
         <div class="flex items-center justify-end gap-2 w-full">
@@ -85,7 +85,7 @@ function toggleOptions(): void {
             <button
               aria-label="Other options"
               onclick={toggleOptions}
-              class="rounded-md bg-violet-200 hover:bg-violet-300 text-violet-700 font-medium transition-colors duration-300 ease-in-out p-1 flex justify-center items-center"
+              class="rounded-md bg-background-alt hover:bg-text hover:text-background-alt font-medium transition-colors duration-300 ease-in-out p-1 flex justify-center items-center"
             >
               <span class="i-[tabler--dots] text-lg"></span>
             </button>

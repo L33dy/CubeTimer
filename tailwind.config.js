@@ -24,10 +24,21 @@ export default {
       },
       colors: {
         primary: colors.violet,
+        'background': 'rgb(from var(--background) r g b / <alpha-value>)',
+        'background-alt': 'rgb(from var(--background-alt) r g b / <alpha-value>)',
+        'text': 'rgb(from var(--text) r g b / <alpha-value>)',
+        'text-alt': 'rgb(from var(--text-alt) r g b / <alpha-value>)',
+        'main': 'rgb(from var(--main) r g b / <alpha-value>)',
+        'error': 'rgb(from var(--error) r g b / <alpha-value>)',
       },
       fontFamily: {
         'sans': ['Open Sans', 'serif'],
         'mono': ['Roboto Mono', 'serif'],
+      },
+      maxWidth: {
+        '8xl': '88rem',
+        '9xl': '96rem',
+        '10xl': '104rem',
       },
     },
   },

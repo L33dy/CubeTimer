@@ -30,8 +30,8 @@ function selectSolve() {
 
 <button
   bind:this={solve}
-  class="transition-all duration-300 ease-in-out rounded-md px-7 py-3 bg-white shadow-sm border-1 border-transparent disabled:hover:border-transparent flex flex-col justify-center items-center h-[54px] outline-none"
-  class:hover:border-primary-200={!selectMode}
+  class="transition-all duration-300 ease-in-out rounded-md px-7 py-3 bg-background-alt shadow-sm border-1 border-transparent disabled:hover:border-transparent flex flex-col justify-center items-center h-[54px] outline-none"
+  class:hover:border-main={!selectMode}
   disabled={onClick === undefined}
   onclick={() => selectMode ? selectSolve() : onClick?.()}
 >
@@ -39,17 +39,13 @@ function selectSolve() {
     { penalty === Penalty.NONE ? time.toFixed(3) : penalty === Penalty.PLUSTWO ? `${time.toFixed(3)}+` : 'DNF' }
   </span>
   <span id="checkmark">
-    <span class="i-[bi--check] text-violet-500"></span>
+    <span class="i-[bi--check] text-background"></span>
   </span>
 </button>
 
 <style lang="postcss">
-    :global([scrambleData-selected]) {
-        @apply !bg-gray-200;
-    }
-
     #checkmark {
-        @apply h-0 w-0 opacity-0 transition-all duration-150 bg-white shadow-md rounded-full flex justify-center items-center;
+        @apply h-0 w-0 opacity-0 transition-all duration-150 bg-text-alt shadow-md rounded-full flex justify-center items-center;
     }
 
     :global([scrambleData-selected] > #checkmark) {

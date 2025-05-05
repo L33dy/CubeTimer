@@ -1,0 +1,65 @@
+[
+  {
+    "name": "emerald-frost",
+    "background": "#0f1c1a",
+    "backgroundAlt": "#1a2c27",
+    "text": "#e2f1ee",
+    "textAlt": "#8ab3ab",
+    "main": "#49d0b0",
+    "error": "#f97070"
+  },
+  {
+    "name": "cloud-breeze",
+    "background": "#f0f5f9",
+    "backgroundAlt": "#e1eaf2",
+    "text": "#334756",
+    "textAlt": "#5c7d99",
+    "main": "#2a97c7",
+    "error": "#e5534b"
+  },
+  {
+  "name": "mocha-night",
+  "background": "#241a16",
+  "backgroundAlt": "#2d221c",
+  "text": "#e8d9cf",
+  "textAlt": "#b09686",
+  "main": "#c87941",
+  "error": "#e05252"
+  },
+  {
+    "name": "neon-pulse",
+    "background": "#0d0d14",
+    "backgroundAlt": "#161824",
+    "text": "#eef1ff",
+    "textAlt": "#a0a7cc",
+    "main": "#00ffaa",
+    "error": "#ff3377"
+  },
+  {
+    "name": "peach-delight",
+    "background": "#fff5f0",
+    "backgroundAlt": "#ffede5",
+    "text": "#4d3428",
+    "textAlt": "#7d6354",
+    "main": "#ff7e45",
+    "error": "#e53935"
+  },
+  {
+    "name": "sakura-bloom",
+    "background": "#fef6f8",
+    "backgroundAlt": "#fae7ed",
+    "text": "#5d4a4c",
+    "textAlt": "#8c7476",
+    "main": "#f1768a",
+    "error": "#e7435e"
+  },
+  {
+    "name": "midnight-ocean",
+    "background": "#0f1726",
+    "backgroundAlt": "#1a2639",
+    "text": "#e6eeff",
+    "textAlt": "#a2b6d7",
+    "main": "#4d9de0",
+    "error": "#ff5d7a"
+  }
+]
