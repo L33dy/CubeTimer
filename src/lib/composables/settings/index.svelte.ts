@@ -1,4 +1,5 @@
 import toast from 'svelte-french-toast'
+import { info } from '$lib/composables'
 
 export interface Settings {
   timerSettings: TimerSettings
@@ -38,7 +39,7 @@ const defaultSettings: Settings = {
     timerUpdate: 3,
   },
   appearanceSettings: {
-    theme: 'blue-night',
+    theme: 'mocha-night',
   },
 }
 
@@ -78,6 +79,12 @@ export function resetSettings(): void {
   toast.success('Settings have been reset.')
 }
 
+export function getCurrentThemeName(): string {
+  const settings = getSettings()
+
+  return settings.appearanceSettings.theme
+}
+
 export function loadTheme(name: string): void {
   const existingLink = document.getElementById('theme') as HTMLLinkElement
 
@@ -92,7 +99,7 @@ export function loadTheme(name: string): void {
     link.rel = 'stylesheet'
     link.media = 'screen,print'
 
-    document.getElementsByTagName('head')[0].appendChild(link)
+    document.getElementsByTagName('body')[0].appendChild(link)
   }
 
   updateSettingValue('appearanceSettings', 'theme', name)

@@ -7,6 +7,7 @@ import { settings } from '$composables'
 function openThemeModal() {
   createModal({
     type: 'theme',
+    noPadding: true,
   })
 }
 </script>

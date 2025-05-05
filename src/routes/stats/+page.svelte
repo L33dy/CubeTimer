@@ -1,13 +1,13 @@
 <script lang="ts">
-import {
-  getAverage,
-  getBestSingle,
-  getMeanTime,
-  getTimeDistribution,
-  getTimes,
-  scrambleData,
-  showDetail
-} from '$lib/composables'
+  import {
+    getAverage,
+    getBestSingle, getCurrentThemeName,
+    getMeanTime,
+    getTimeDistribution,
+    getTimes,
+    scrambleData,
+    showDetail
+  } from '$lib/composables'
 import { Chart } from 'chart.js/auto'
 import { onMount } from 'svelte'
 import StatsItem from '$lib/components/stats/StatsItem.svelte'
@@ -30,7 +30,7 @@ function initCharts() {
   const timeTrend = document.getElementById('timeTrend') as HTMLCanvasElement
   const timeDistribution = document.getElementById('timeDistribution') as HTMLCanvasElement
 
-  const style = getComputedStyle(document.body)
+  const style = getComputedStyle(document.documentElement)
   let mainColor = style.getPropertyValue('--main')
 
   new Chart(timeTrend, {

@@ -31,8 +31,8 @@ function saveTime(e: SubmitEvent): void {
     {#if timerState.inspection === InspectionState.NONE}
       <p
         class:text-text={timerState.timer === TimerState.IDLE || timerState.timer === TimerState.RUNNING}
-        class:text-red-500={timerState.timer === TimerState.PREPARING}
-        class:text-green-500={timerState.timer === TimerState.PREPARED}
+        class:text-error={timerState.timer === TimerState.PREPARING}
+        class:text-main={timerState.timer === TimerState.PREPARED}
         class="text-6xl font-bold transition-all duration-300 ease-in-out font-mono"
         class:scale-150={timerState.timer === TimerState.RUNNING}
       >
@@ -44,7 +44,7 @@ function saveTime(e: SubmitEvent): void {
           {inspectionTime.value}
         </p>
         {#if timerSettings.showCancelInspection}
-          <CTButton onclick={cancelInspection} color="white">
+          <CTButton onclick={cancelInspection} color="primary">
             Cancel
           </CTButton>
         {/if}

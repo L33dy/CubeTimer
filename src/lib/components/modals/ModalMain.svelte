@@ -17,8 +17,10 @@ function cancelModal() {
 ></div>
 
 <div
+  class:!p-0={currentModal.value?.noPadding}
   class="flex flex-col bg-background rounded-md border-2 border-background-alt absolute
-    top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] z-50 px-4 pt-2 pb-4" in:scale={{ delay: 150 }} out:scale
+    top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] z-50 px-4 pt-2 pb-4"
+  in:scale={{ delay: 150 }} out:scale
 >
   {#if currentModal.value?.type === 'confirm'}
     <ModalConfirm {...currentModal.value} />

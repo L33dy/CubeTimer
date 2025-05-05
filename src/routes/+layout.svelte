@@ -5,7 +5,16 @@ import { currentModal } from '$packages/modal/index.svelte'
 import { Toaster } from 'svelte-french-toast'
 import SolveTimeDetail from '$components/solveDetail/SolveTimeDetail.svelte'
 import ModalMain from '$components/modals/ModalMain.svelte'
-import { detailData, getData, getSettings, hideDetail, loadTheme, scrambleData, settings } from '$lib/composables'
+import {
+  detailData,
+  getData,
+  getSettings,
+  hideDetail,
+  info,
+  loadTheme,
+  scrambleData,
+  settings,
+} from '$lib/composables'
 import NavBar from '$components/nav/NavBar.svelte'
 import CTLoading from '$components/cubetime/CTLoading.svelte'
 import Changelog from '$components/changelog/Changelog.svelte'
@@ -19,11 +28,14 @@ interface Props {
 let { children }: Props = $props()
 
 onMount(() => {
+  info('Loading settings from localStorage..')
   settings.value = getSettings()
+  info('Settings loaded!')
 
   loadTheme(settings.value.appearanceSettings.theme)
 
   scrambleData.scrambles = getData()
+  info('Loaded scrambles from the database.')
 })
 </script>
 

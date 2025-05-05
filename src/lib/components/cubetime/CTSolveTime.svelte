@@ -39,7 +39,7 @@ function selectSolve() {
     { penalty === Penalty.NONE ? time.toFixed(3) : penalty === Penalty.PLUSTWO ? `${time.toFixed(3)}+` : 'DNF' }
   </span>
   <span id="checkmark">
-    <span class="i-[bi--check] text-main"></span>
+    <span class="i-[bi--check] text-background"></span>
   </span>
 </button>
 
