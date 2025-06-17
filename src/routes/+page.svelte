@@ -49,7 +49,9 @@ $effect(() => {
 
 <svelte:body onkeydown={(e) => {keyDown(e); togglePrepare(e)}} onkeyup={toggleStart}/>
 
-<Session/>
+{#if (scrambleData.scrambles?.length ?? 0) > 0}
+  <Session/>
+{/if}
 <Stats/>
 <Timer />
 

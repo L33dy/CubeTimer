@@ -13,7 +13,7 @@ import {
   info,
   loadTheme,
   scrambleData,
-  settings,
+  settings
 } from '$lib/composables'
 import NavBar from '$components/nav/NavBar.svelte'
 import CTLoading from '$components/cubetime/CTLoading.svelte'
