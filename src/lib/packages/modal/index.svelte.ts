@@ -1,6 +1,6 @@
-import type { ConfirmModal, ThemeModal } from './types'
+import type {ConfirmModal, ReleasesModal, ThemeModal} from './types'
 
-export type Modal = (ConfirmModal | ThemeModal) & {
+export type Modal = (ConfirmModal | ThemeModal | ReleasesModal) & {
   noPadding?: boolean
 }
 

@@ -3,6 +3,7 @@ import { closeCurrentModal, currentModal } from '$packages/modal/index.svelte'
 import { fade, scale } from 'svelte/transition'
 import ModalConfirm from '$components/modals/ModalConfirm.svelte'
 import ModalTheme from '$components/modals/ModalTheme.svelte'
+import ModalReleases from '$components/modals/ModalReleases.svelte'
 
 function cancelModal() {
   currentModal.value?.onCancel?.()
@@ -27,5 +28,8 @@ function cancelModal() {
   {/if}
   {#if currentModal.value?.type === 'theme'}
     <ModalTheme {...currentModal.value} />
+  {/if}
+  {#if currentModal.value?.type === 'releases'}
+    <ModalReleases {...currentModal.value} />
   {/if}
 </div>

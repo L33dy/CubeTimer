@@ -35,7 +35,7 @@ let {
 
 <style lang="postcss">
     .primary {
-        @apply bg-background-alt hover:bg-text hover:text-background-alt;
+        @apply bg-background-alt disabled:bg-text disabled:text-background-alt hover:bg-text hover:text-background-alt;
     }
 
     .red {

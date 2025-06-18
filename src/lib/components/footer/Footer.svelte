@@ -10,6 +10,12 @@ function openThemeModal() {
     noPadding: true,
   })
 }
+
+function openReleasesModal() {
+  createModal({
+    type: 'releases',
+  })
+}
 </script>
 
 <footer class="flex justify-between items-center max-w-10xl w-full mx-auto px-10 py-4">

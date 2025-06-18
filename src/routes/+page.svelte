@@ -55,7 +55,7 @@ $effect(() => {
 <Stats/>
 <Timer />
 
-<div class="flex flex-col justify-center items-center mt-32 mx-auto w-3/4 relative">
+<div class="flex flex-col items-center w-full py-24">
   {#key scrambleData.sequence}
     <p
       in:fade={{ duration: 450 }}

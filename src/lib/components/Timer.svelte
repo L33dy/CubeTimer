@@ -26,14 +26,14 @@ function saveTime(e: SubmitEvent): void {
 }
 </script>
 
-<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+<div class="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2">
   {#if timerSettings.timerMode === 'timer'}
     {#if timerState.inspection === InspectionState.NONE}
       <p
         class:text-text={timerState.timer === TimerState.IDLE || timerState.timer === TimerState.RUNNING}
         class:text-error={timerState.timer === TimerState.PREPARING}
         class:text-main={timerState.timer === TimerState.PREPARED}
-        class="text-6xl font-bold transition-all duration-300 ease-in-out font-mono"
+        class="text-7xl font-bold transition-all duration-300 ease-in-out font-mono"
         class:scale-150={timerState.timer === TimerState.RUNNING}
       >
         {`${time.value.seconds}.${time.value.milliseconds.toString().padStart(3, '0')}`}

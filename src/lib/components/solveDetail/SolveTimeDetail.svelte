@@ -114,7 +114,7 @@ function closeDetail() {
   </div>
   <button
     aria-label="Close detail"
-    class="absolute -top-10 -right-10 bg-background border-1 border-text-alt hover:border-text transition-colors duration-300 rounded-full w-8 h-8 flex justify-center items-center"
+    class="absolute -top-10 -right-10 bg-background border-1 border-text-alt hover:border-background-alt hover:bg-text hover:text-background-alt transition-colors duration-300 rounded-full w-8 h-8 flex justify-center items-center"
     onclick={closeDetail}
   >
     <span class="i-[material-symbols--close]"></span>
